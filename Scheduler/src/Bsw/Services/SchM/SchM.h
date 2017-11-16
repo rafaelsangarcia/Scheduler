@@ -10,6 +10,7 @@
 
 #include "Std_Types.h"
 #include "SchM_Cfg.h"
+#include "SchM_Types.h"
 
 extern void SchM_Init( const SchM_ConfigType *SchMConfig );
 extern void SchM_Start( void );
