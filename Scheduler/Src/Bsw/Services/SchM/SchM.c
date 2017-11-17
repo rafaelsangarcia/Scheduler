@@ -61,7 +61,7 @@
 /*============================================================================*/
 
 /* Variables */
-Flags FlagsScheduler = {
+FlagsStatus FlagsScheduler = {
 	0,0
 };
 uint32_t OsTickCounter = 0; /* Remove this line */
@@ -83,27 +83,15 @@ uint32_t OsTickCounter = 0; /* Remove this line */
  a certain activation of the motors.
  \returns TRUE if the activation is allowed, FALSE if not
 */
-// uint8 algreqg_olp_CheckOLPAllow(uint8 ReqestedAction_u8,       /**< the requested action to be performed (e.g. unlock) */
-//                                 uint16 RequestedComponent_u16  /**< the mask of the doors which motors to be activated (e.g. front doors) */
-//                                 )
-// {
-// 	return 0;
-// }
 
 /* Exported functions */
 void SchM_OsTick( void ){
 	SchM_SchedulerStatus.OsTickCounter++;
-  //uint8_t LocTaskIdx;
-
-	SchM_SchedulerStatus.OsTickCounter++;
-
-	//Set Ready the Task if mask match the Counter
 	for(LocTaskIdx = 0; LocTaskIdx < GlbSchMConfig->NumOfTasks; LocTaskIdx++){
 		if((SchM_SchedulerStatus.OsTickCounter & GlbSchMConfig->TaskConfig[LocTaskIdx].TaskMask) == GlbSchMConfig->TaskConfig[LocTaskIdx].TaskOffset){
 			if(FlagsScheduler.FlagTaskState == 1) {
 				FlagsScheduler.FlagOverLoad = 1;
 			}
-
 					SchM_TaskControlBlock[LocTaskIdx].SchM_TaskState=SCHM_TASK_STATE_READY;
 					FlagsScheduler.FlagTaskState = 1;
 			}

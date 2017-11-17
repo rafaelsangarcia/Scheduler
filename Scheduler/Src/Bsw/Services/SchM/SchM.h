@@ -58,7 +58,7 @@ const SchM_ConfigType *GlbSchMConfig;
 typedef struct {
   uint8_t FlagOverLoad: 1;
   uint8_t FlagTaskState: 1;
-}Flags;
+}FlagsStatus;
 
 /*============================================================================*/
 
