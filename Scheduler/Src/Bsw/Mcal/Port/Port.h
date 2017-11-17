@@ -21,10 +21,6 @@
 #define LedBar_4 15
 #define LedBar_5 16
 #define LedBar_6 14
-#define LedBar_7 3
-#define LedBar_8 16
-#define LedBar_9 15
-#define LedBar_10 14
 
 void PORT_init (void);
 
