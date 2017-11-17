@@ -12,6 +12,10 @@
 #include "SchM_Cfg.h"
 #include "SchM_Types.h"
 
+typedef struct {
+  uint8_t FlagOverLoad: 1;
+  uint8_t FlagTaskState: 1;
+}
 extern void SchM_Init( const SchM_ConfigType *SchMConfig );
 extern void SchM_Start( void );
 extern void SchM_Stop( void );

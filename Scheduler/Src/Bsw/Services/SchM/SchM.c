@@ -25,6 +25,10 @@ const SchM_ConfigType *GlbSchMConfig;
 SchM_TaskControlBlockType SchM_TaskControlBlock[NUM_OF_TASKS];
 SchM_SchedulerStatusType SchM_SchedulerStatus;
 
+Flags FlagsScheduler = {
+	0,0
+};
+
 uint32_t OsTickCounter = 0; /* Remove this line */
 
 void SchM_OsTick( void )
@@ -49,8 +53,13 @@ void SchM_OsTick( void )
 
 	//Set Ready the Task if mask match the Counter
 	for(LocTaskIdx = 0; LocTaskIdx < GlbSchMConfig->NumOfTasks; LocTaskIdx++){
-		if((SchM_SchedulerStatus.OsTickCounter & GlbSchMConfig->TaskConfig[LocTaskIdx].TaskMask) == GlbSchMConfig->TaskConfig[LocTaskIdx].TaskOffset){  //if((Counter & Mask) == Offset)
+		if((SchM_SchedulerStatus.OsTickCounter & GlbSchMConfig->TaskConfig[LocTaskIdx].TaskMask) == GlbSchMConfig->TaskConfig[LocTaskIdx].TaskOffset){
+			if(FlagsScheduler.FlagTaskState == 1) {
+				FlagsScheduler.FlagOverLoad = 1;
+			}
+
 					SchM_TaskControlBlock[LocTaskIdx].SchM_TaskState=SCHM_TASK_STATE_READY;
+					FlagsScheduler.FlagTaskState = 1;
 			}
 	}
 }
@@ -68,6 +77,8 @@ void SchM_Background( void )
 				SchM_SchedulerStatus.SchM_SchedulerState = SCHM_RUNNING;
 				GlbSchMConfig->TaskConfig[LocTaskIdx].TaskCallback();
 				SchM_TaskControlBlock[LocTaskIdx].SchM_TaskState = SCHM_TASK_STATE_SUSPENDED;
+				SchM_SchedulerStatus.SchM_SchedulerState = SCHM_IDLE;
+				FlagsScheduler.FlagTaskState = 0;
 				SchM_SchedulerStatus.SchM_SchedulerState = SCHM_IDLE;
 			}
 		}
