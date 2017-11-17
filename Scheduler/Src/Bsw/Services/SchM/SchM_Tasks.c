@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  ** $Source: SchM_Tasks.c $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Rafael Sanchez $
  * $Date: 17/Nov/2017 $
  */
@@ -35,6 +35,7 @@
 /*  Author           |        Version     |           DESCRIPTION             */
 /*----------------------------------------------------------------------------*/
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
+/*  Rafael Sanchez   |      2             | Fill each task turning on/off leds*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -70,56 +71,41 @@
  a certain activation of the motors.
  \returns TRUE if the activation is allowed, FALSE if not
 */
-// uint8 algreqg_olp_CheckOLPAllow(uint8 ReqestedAction_u8,       /**< the requested action to be performed (e.g. unlock) */
-//                                 uint16 RequestedComponent_u16  /**< the mask of the doors which motors to be activated (e.g. front doors) */
-//                                 )
-// {
-// 	return 0;
-// }
-
 
 /* Exported functions */
 void SchM_3p125ms_Task ( void ){
-		//MAL********
-	static int counter = 0;
-	counter++;
-	if(counter == 1000){
-	/* Task Body */
-		Dio_PortSetPin(PORTCH_D, RedLed);
-	}
-	/* ....   */
-	if (counter == 2000){
-
-		Dio_PortClearPin(PORTCH_D, RedLed);
-		counter=0;
-	}
+	Dio_PortTooglePin(PORTCH_C, LedBar_1);
+		static int counter;
+		for(counter=0; counter <= Cycles; counter++){}
 }
 void SchM_6p25ms_Task ( void ){
+	Dio_PortTooglePin(PORTCH_B, LedBar_2);
+	static int counter;
+	for(counter=0; counter <= Cycles; counter++){}
 	/* Task Body */
 }
 void SchM_12p5ms_Task ( void ){
 	/* Task Body */
+	Dio_PortTooglePin(PORTCH_B, LedBar_3);
+	static int counter;
+	for(counter=0; counter <= Cycles; counter++){}
 }
 void SchM_25ms_Task ( void ){
+	Dio_PortTooglePin(PORTCH_B, LedBar_4);
+	static int counter;
+	for(counter=0; counter <= Cycles; counter++){}
 	/* Task Body */
 }
 void SchM_50ms_Task ( void ){
+	Dio_PortTooglePin(PORTCH_B, LedBar_5);
+	static int counter;
+	for(counter=0; counter <= Cycles; counter++){}
 	/* Task Body */
 }
 void SchM_100ms_Task ( void ){
-	static int counter = 0;
-	counter++;
-	if(counter == 10){
-	/* Task Body */
-		Dio_PortSetPin(PORTCH_D, BlueLed);
-	}
-	/* ....   */
-	if (counter == 20){
-
-		Dio_PortClearPin(PORTCH_D, BlueLed);
-		counter=0;
-	}
-	/* Task Body */
+	Dio_PortTooglePin(PORTCH_C, LedBar_6);
+	static int counter;
+	for(counter=0;counter <= Cycles; counter++){}
 }
 /*============================================================================*/
 
