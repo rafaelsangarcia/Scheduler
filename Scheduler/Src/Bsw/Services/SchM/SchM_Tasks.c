@@ -45,6 +45,7 @@
 /* Includes */
 #include "SchM_Tasks.h"
 #include "Dio.h"
+
 /*============================================================================*/
 
 /* Constants and types  */
@@ -84,12 +85,12 @@ void SchM_3p125ms_Task ( void ){
 	counter++;
 	if(counter == 1000){
 	/* Task Body */
-		Dio_PortSetPin(PORTCH_D, 15);
+		Dio_PortSetPin(PORTCH_D, RedLed);
 	}
 	/* ....   */
 	if (counter == 2000){
 
-		Dio_PortClearPin(PORTCH_D, 15);
+		Dio_PortClearPin(PORTCH_D, RedLed);
 		counter=0;
 	}
 }
@@ -110,12 +111,12 @@ void SchM_100ms_Task ( void ){
 	counter++;
 	if(counter == 10){
 	/* Task Body */
-		Dio_PortSetPin(PORTCH_D, 0);
+		Dio_PortSetPin(PORTCH_D, BlueLed);
 	}
 	/* ....   */
 	if (counter == 20){
 
-		Dio_PortClearPin(PORTCH_D, 0);
+		Dio_PortClearPin(PORTCH_D, BlueLed);
 		counter=0;
 	}
 	/* Task Body */

@@ -47,6 +47,8 @@
 
 /* Includes */
 #include "Std_Types.h"
+#include "Port.h"
+
 /*============================================================================*/
 
 /* Constants and types */

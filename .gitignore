@@ -4,3 +4,5 @@
 /Scheduler/.settings
 /Scheduler/Debug
 /.metadata
+/MQX_RTOS_TAD_logs
+/FreeRTOS_TAD_logs
