@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
 * $Source: SchM.h $
-* $Revision: version 1 $
+* $Revision: version 2 $
 * $Author: Rafael Sanchez $
 * $Date: 17/Nov/2017 $
  */
@@ -35,6 +35,8 @@
 /*  Author           |        Version     |           DESCRIPTION             */
 /*----------------------------------------------------------------------------*/
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
+/*  Rafael Sanchez   |      2             |  Update OsTick, difenes where the */
+/*     							 |                    |  tasks status changes						  */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
