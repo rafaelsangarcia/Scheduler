@@ -1,10 +1,48 @@
-/*
- * SchM.c
- *
- *  Created on: 15/11/2017
- *      Author: uid87753
+/*============================================================================*/
+/*                        I BS SOFTWARE GROUP                                 */
+/*============================================================================*/
+/*                        OBJECT SPECIFICATION                                */
+/*============================================================================*/
+/*!
+ * $Source: SchM.c $
+ * $Revision: version 1 $
+ * $Author: Rafael Sanchez $
+ * $Date: 17/Nov/2017 $
  */
+/*============================================================================*/
+/* DESCRIPTION :                                                              */
+/** \file
+    short description in one sentence end with dot.
+    detailed
+    multiline
+    description of the file
+*/
+/*============================================================================*/
+/* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */
+/* AUTOMOTIVE GROUP, Interior Division, Body and Security                     */
+/* ALL RIGHTS RESERVED                                                        */
+/*                                                                            */
+/* The reproduction, transmission, or use of this document or its content is  */
+/* not permitted without express written authority. Offenders will be liable  */
+/* for damages.                                                               */
+/* All rights, including rights created by patent grant or registration of a  */
+/* utility model or design, are reserved.                                     */
+/*                                                                            */
+/*============================================================================*/
+/*============================================================================*/
+/*                    REUSE HISTORY - taken over from                         */
+/*============================================================================*/
+/*  Author           |        Version     |           DESCRIPTION             */
+/*----------------------------------------------------------------------------*/
+/*  Rafael Sanchez   |      1             |  Use the template and add the code*/
+/*============================================================================*/
+/*                               OBJECT HISTORY                               */
+/*============================================================================*/
+/*
+ * $Log: filename.c  $
+  ============================================================================*/
 
+/* Includes */
 #include "General.h"
 #include "SchM.h"
 #include "Lpit.h"
@@ -17,37 +55,45 @@
  *
  *  */
 #include "Dio.h"
+/*============================================================================*/
 
-#define NUM_OF_TASKS (0x6)
+/* Constants and types  */
+/*============================================================================*/
 
-const SchM_ConfigType *GlbSchMConfig;
-
-SchM_TaskControlBlockType SchM_TaskControlBlock[NUM_OF_TASKS];
-SchM_SchedulerStatusType SchM_SchedulerStatus;
-
+/* Variables */
 Flags FlagsScheduler = {
 	0,0
 };
-
 uint32_t OsTickCounter = 0; /* Remove this line */
+/*============================================================================*/
 
-void SchM_OsTick( void )
-{
+/* Private functions prototypes */
+/*============================================================================*/
+
+/* Inline functions */
+/*============================================================================*/
+
+/* Private functions */
+/*============================================================================*/
+
+/** Check if action is allowed by overload protection.
+ To avoid overheating of the door locking motors and hardware failure
+ the software shall limit the number of activations in a short period.
+ This function checks if the limitation algorithm allows or not
+ a certain activation of the motors.
+ \returns TRUE if the activation is allowed, FALSE if not
+*/
+// uint8 algreqg_olp_CheckOLPAllow(uint8 ReqestedAction_u8,       /**< the requested action to be performed (e.g. unlock) */
+//                                 uint16 RequestedComponent_u16  /**< the mask of the doors which motors to be activated (e.g. front doors) */
+//                                 )
+// {
+// 	return 0;
+// }
+
+/* Exported functions */
+void SchM_OsTick( void ){
 	SchM_SchedulerStatus.OsTickCounter++;
-
-	/* Remove the following lines */
-	/*OsTickCounter++;
-
-	if (OsTickCounter > 640)
-	{
-		Dio_PortTooglePin(PORTCH_D, 0);
-		OsTickCounter = 0;
-	}*/
-
-	//uint8_t FlagRunning=0;
-	//uint8_t FlagOF=0;
-
-	uint8_t LocTaskIdx;
+  //uint8_t LocTaskIdx;
 
 	SchM_SchedulerStatus.OsTickCounter++;
 
@@ -63,9 +109,7 @@ void SchM_OsTick( void )
 			}
 	}
 }
-
-void SchM_Background( void )
-{
+void SchM_Background( void ){
 	uint8_t LocTaskIdx;
 	while(1) //for|
 	{
@@ -84,9 +128,7 @@ void SchM_Background( void )
 		}
 	}
 }
-
-void SchM_Init( const SchM_ConfigType *SchMConfig )
-{
+void SchM_Init( const SchM_ConfigType *SchMConfig ){
 	GlbSchMConfig = SchMConfig;
 	uint8_t LocTaskIdx;
 	SchM_SchedulerStatus.SchM_SchedulerState = SCHM_UNINIT;
@@ -100,14 +142,14 @@ void SchM_Init( const SchM_ConfigType *SchMConfig )
 
 	SchM_SchedulerStatus.SchM_SchedulerState = SCHM_INIT;
 }
-
-void SchM_Start( void )
-{
+void SchM_Start( void ){
 	LPIT0_Start();
 	SchM_Background();
 }
-
-void SchM_Stop( void )
-{
+void SchM_Stop( void ){
 	LPIT0_Stop();
 }
+
+/*============================================================================*/
+
+ /* Notice: the file ends with a blank new line to avoid compiler warnings */
