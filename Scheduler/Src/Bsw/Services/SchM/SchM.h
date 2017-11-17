@@ -5,8 +5,8 @@
 /*============================================================================*/
 /*!
 * $Source: SchM.h $
-* $Revision: version 2 $
-* $Author: Rafael Sanchez $
+* $Revision: version 3 $
+* $Author: Rodrigo Mortera $
 * $Date: 17/Nov/2017 $
  */
 /*============================================================================*/
@@ -36,7 +36,8 @@
 /*----------------------------------------------------------------------------*/
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
 /*  Rafael Sanchez   |      2             |  Update OsTick, difenes where the */
-/*     							 |                    |  tasks status changes						  */
+/*     				|                    |  tasks status change               */
+/* Rodrigo Mortera   |      3             | include overload, background functions*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -50,6 +51,7 @@
 #include "Std_Types.h"
 #include "SchM_Cfg.h"
 #include "SchM_Types.h"
+#include "Port.h"
 /*============================================================================*/
 
 /* Constants and types */
@@ -75,6 +77,9 @@ uint8_t LocTaskIdx;
 extern void SchM_Init( const SchM_ConfigType *SchMConfig );
 extern void SchM_Start( void );
 extern void SchM_Stop( void );
+void SetOverloadState(void);
+void SetBackgroundState(void);
+void SetOffBackgroundState(void);
 /*============================================================================*/
 
 #endif /* BSW_SERVICES_SCHM_SCHM_H_ */

@@ -5,8 +5,8 @@
 /*============================================================================*/
 /*!
  * $Source: SchM.c $
- * $Revision: version 2 $
- * $Author: Rafael Sanchez $
+ * $Revision: version 3 $
+ * $Author: Rodrigo Mortera $
  * $Date: 17/Nov/2017 $
  */
 /*============================================================================*/
@@ -36,7 +36,8 @@
 /*----------------------------------------------------------------------------*/
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
 /*  Rafael Sanchez   |      2             |  Update OsTick, difenes where the */
-/*     							 |                    |  tasks status changes						  */
+/*     				 |                    |  tasks status changes			  */
+/* Rodrigo Mortera   |      3             | include overload, background functions*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -88,11 +89,15 @@ uint32_t OsTickCounter = 0; /* Remove this line */
 
 /* Exported functions */
 void SchM_OsTick( void ){
+	uint8_t LocTaskIdx;
 	SchM_SchedulerStatus.OsTickCounter++;
 	for(LocTaskIdx = 0; LocTaskIdx < GlbSchMConfig->NumOfTasks; LocTaskIdx++){
+
 		if((SchM_SchedulerStatus.OsTickCounter & GlbSchMConfig->TaskConfig[LocTaskIdx].TaskMask) == GlbSchMConfig->TaskConfig[LocTaskIdx].TaskOffset){
+
 			if(FlagsScheduler.FlagTaskState == 1) {
 				FlagsScheduler.FlagOverLoad = 1;
+				SetOverloadState(); 					 //TurnOn the OVERLOADPIN
 			}
 					SchM_TaskControlBlock[LocTaskIdx].SchM_TaskState=SCHM_TASK_STATE_READY;
 					FlagsScheduler.FlagTaskState = 1;
@@ -100,8 +105,10 @@ void SchM_OsTick( void ){
 	}
 }
 void SchM_Background( void ){
+
 	uint8_t LocTaskIdx;
-	while(1) //for|
+
+	for(;;)
 	{
 		for(LocTaskIdx = 0; LocTaskIdx < GlbSchMConfig->NumOfTasks; LocTaskIdx++)
 		{
@@ -109,11 +116,12 @@ void SchM_Background( void ){
 			{
 				SchM_TaskControlBlock[LocTaskIdx].SchM_TaskState = SCHM_TASK_STATE_RUNNING;
 				SchM_SchedulerStatus.SchM_SchedulerState = SCHM_RUNNING;
+				SetOffBackgroundState();
 				GlbSchMConfig->TaskConfig[LocTaskIdx].TaskCallback();
 				SchM_TaskControlBlock[LocTaskIdx].SchM_TaskState = SCHM_TASK_STATE_SUSPENDED;
+				FlagsScheduler.FlagTaskState = 0 ;
 				SchM_SchedulerStatus.SchM_SchedulerState = SCHM_IDLE;
-				FlagsScheduler.FlagTaskState = 0;
-				SchM_SchedulerStatus.SchM_SchedulerState = SCHM_IDLE;
+				SetBackgroundState();
 			}
 		}
 	}
@@ -140,6 +148,18 @@ void SchM_Stop( void ){
 	LPIT0_Stop();
 }
 
+void SetOverloadState(void){
+	Dio_PortSetPin(PORTCH_D,RedLed);
+}
+
+void SetBackgroundState(void){
+	Dio_PortSetPin(PORTCH_D,BlueLed);
+}
+
+void SetOffBackgroundState(void){
+	Dio_PortClearPin(PORTCH_D,BlueLed);
+
+}
 /*============================================================================*/
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
