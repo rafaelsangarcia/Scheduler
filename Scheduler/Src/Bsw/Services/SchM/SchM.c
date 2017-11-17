@@ -32,14 +32,27 @@ void SchM_OsTick( void )
 	SchM_SchedulerStatus.OsTickCounter++;
 
 	/* Remove the following lines */
-	OsTickCounter++;
+	/*OsTickCounter++;
 
 	if (OsTickCounter > 640)
 	{
 		Dio_PortTooglePin(PORTCH_D, 0);
 		OsTickCounter = 0;
-	}
+	}*/
 
+	//uint8_t FlagRunning=0;
+	//uint8_t FlagOF=0;
+
+	uint8_t LocTaskIdx;
+
+	SchM_SchedulerStatus.OsTickCounter++;
+
+	//Set Ready the Task if mask match the Counter
+	for(LocTaskIdx = 0; LocTaskIdx < GlbSchMConfig->NumOfTasks; LocTaskIdx++){
+		if((SchM_SchedulerStatus.OsTickCounter & GlbSchMConfig->TaskConfig[LocTaskIdx].TaskMask) == GlbSchMConfig->TaskConfig[LocTaskIdx].TaskOffset){  //if((Counter & Mask) == Offset)
+					SchM_TaskControlBlock[LocTaskIdx].SchM_TaskState=SCHM_TASK_STATE_READY;
+			}
+	}
 }
 
 void SchM_Background( void )
