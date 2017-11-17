@@ -45,7 +45,7 @@ void SchM_OsTick( void )
 void SchM_Background( void )
 {
 	uint8_t LocTaskIdx;
-	while(1)
+	while(1) //for|
 	{
 		for(LocTaskIdx = 0; LocTaskIdx < GlbSchMConfig->NumOfTasks; LocTaskIdx++)
 		{

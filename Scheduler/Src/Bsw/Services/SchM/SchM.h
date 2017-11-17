@@ -14,5 +14,6 @@
 
 extern void SchM_Init( const SchM_ConfigType *SchMConfig );
 extern void SchM_Start( void );
+extern void SchM_Stop( void );
 
 #endif /* BSW_SERVICES_SCHM_SCHM_H_ */

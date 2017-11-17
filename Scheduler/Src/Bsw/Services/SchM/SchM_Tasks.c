@@ -22,3 +22,22 @@ void SchM_6p25ms_Task ( void )
 {
 	/* Task Body */
 }
+
+void SchM_12p5ms_Task ( void )
+{
+	/* Task Body */
+}
+
+void SchM_25ms_Task ( void )
+{
+	/* Task Body */
+}
+
+void SchM_50ms_Task ( void )
+{
+	/* Task Body */
+}
+void SchM_100ms_Task ( void )
+{
+	/* Task Body */
+}
