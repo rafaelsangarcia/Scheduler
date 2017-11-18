@@ -75,40 +75,28 @@
 /* Exported functions */
 void SchM_3p125ms_Task ( void ){
 	Dio_PortTooglePin(PORTCH_C, LedBar_1);
-		static int counter;
-		for(counter=0; counter <= Cycles; counter++){}
+	for(counter_1=0; counter_1 <= Cycles; counter_1++){}
 }
 void SchM_6p25ms_Task ( void ){
 	Dio_PortTooglePin(PORTCH_B, LedBar_2);
-	static int counter;
-	for(counter=0; counter <= Cycles; counter++){}
-	/* Task Body */
+	for(counter_2=0; counter_2 <= Cycles; counter_2++){}
 }
 void SchM_12p5ms_Task ( void ){
-	/* Task Body */
 	Dio_PortTooglePin(PORTCH_B, LedBar_3);
-	static int counter;
-	for(counter=0; counter <= Cycles; counter++){}
+	for(counter_3=0; counter_3 <= Cycles; counter_3++){}
 }
 void SchM_25ms_Task ( void ){
 	Dio_PortTooglePin(PORTCH_B, LedBar_4);
-	static int counter;
-	for(counter=0; counter <= Cycles; counter++){}
-	/* Task Body */
+	for(counter_4=0; counter_4 <= Cycles; counter_4++){}
 }
 void SchM_50ms_Task ( void ){
 	Dio_PortTooglePin(PORTCH_B, LedBar_5);
-	static int counter;
-	for(counter=0; counter <= Cycles; counter++){}
-	/* Task Body */
+	for(counter_5=0; counter_5 <= Cycles; counter_5++){}
 }
 void SchM_100ms_Task ( void ){
 	Dio_PortTooglePin(PORTCH_C, LedBar_6);
-	static int counter;
-	for(counter=0;counter <= Cycles; counter++){}
+	for(counter_6=0;counter_6 <= Cycles; counter_6++){}
 }
 /*============================================================================*/
-
-
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

@@ -149,15 +149,15 @@ void SchM_Stop( void ){
 }
 
 void SetOverloadState(void){
-	Dio_PortSetPin(PORTCH_D,RedLed);
+	Dio_PortClearPin(PORTCH_D,RedLed);
 }
 
 void SetBackgroundState(void){
-	Dio_PortSetPin(PORTCH_D,BlueLed);
+	Dio_PortClearPin(PORTCH_D,BlueLed);
 }
 
 void SetOffBackgroundState(void){
-	Dio_PortClearPin(PORTCH_D,BlueLed);
+	Dio_PortSetPin(PORTCH_D,BlueLed);
 
 }
 /*============================================================================*/

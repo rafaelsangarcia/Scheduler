@@ -54,11 +54,18 @@
 /*============================================================================*/
 
 /* Constants and types */
-#define Cycles (uint32_t)2700
+#define Cycles (uint32_t)2000
 
 /*============================================================================*/
 
 /* Exported Variables */
+static int counter_1;
+static int counter_2;
+static int counter_3;
+static int counter_4;
+static int counter_5;
+static int counter_6;
+
 /*============================================================================*/
 
 /* Exported functions prototypes */
