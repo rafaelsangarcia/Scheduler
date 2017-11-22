@@ -4,8 +4,8 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- ** $Source: SchM_Tasks.c $
- * $Revision: version 3 $
+ * $Source: UpDown.h $
+ * $Revision: version 1 $
  * $Author: Rafael Sanchez $
  * $Date: 22/Nov/2017 $
  */
@@ -32,79 +32,44 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  Author           |        Version     |           DESCRIPTION             */
+/*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*  Rafael Sanchez   |      1             |  Use the template and add the code*/
-/*  Rafael Sanchez   |      2             | Fill each task turning on/off leds*/
-/*  Rafael Sanchez   |      3             | add SchM_1ms_Task*/
+/* Rafael Sanchez       |         1         | Prototype creations to up & down the window*/
+/*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
 /*
- * $Log: filename.c  $
+ * $Log: filename.h  $
+
   ============================================================================*/
+#ifndef BSW_APP_UPDOWN_UPDOWN_H_
+#define BSW_APP_UPDOWN_UPDOWN_H_
 
 /* Includes */
-#include "SchM_Tasks.h"
-#include "Dio.h"
-#include "UpDown.h"
+//#include "Std_Types.h"
+#include "Validation.h"
 
+/*============================================================================*/
+/* Constants and types */
+/*============================================================================*/
+//typedef unsigned int T_ULONG;
+//typedef signed int T_SLONG;
+/* Exported Variables */
+/*============================================================================*/
+/* Exported functions prototypes */
+//void appUpDown_void_ManualUp();
+//void appUpDown_void_ManualDown();
+T_ULONG appUpDown_u32_PushUpButton();
+//T_U32 appUpDown_u32_PushDownButton();
+//T_U32 appUpDown_u32_PushAntipinch();
+T_ULONG appUpDown_u32_validation10ms();
+//T_ULONG appUpDown_u32_validation500ms();
+void appUpDown_void_set_timer1();
+void appUpDown_void_clear_timer1();
+//void appUpDown_void_clearGPIO();
+//void appUpDown_void_default_Leds(T_ULONG led);
 
 /*============================================================================*/
 
-/* Constants and types  */
-/*============================================================================*/
-
-/* Variables */
-/*============================================================================*/
-
-/* Private functions prototypes */
-/*============================================================================*/
-
-/* Inline functions */
-/*============================================================================*/
-
-/* Private functions */
-/*============================================================================*/
-
-/** Check if action is allowed by overload protection.
- To avoid overheating of the door locking motors and hardware failure
- the software shall limit the number of activations in a short period.
- This function checks if the limitation algorithm allows or not
- a certain activation of the motors.
- \returns TRUE if the activation is allowed, FALSE if not
-*/
-
-/* Exported functions */
-void SchM_1ms_Task ( void ){
-	if ( halValidation_u32_ValidateUpButton() == 1 ) {
-		appUpDown_void_set_timer1();
-		if (appUpDown_u32_validation10ms() == 1 ){
-			Dio_PortTooglePin(PORTCH_D, RedLed);
-			appUpDown_void_clear_timer1();
-		}
-	}
-}
-/*void SchM_6p25ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_2);
-	for(counter_2=0; counter_2 <= Cycles; counter_2++){}
-}
-void SchM_12p5ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_3);
-	for(counter_3=0; counter_3 <= Cycles; counter_3++){}
-}
-void SchM_25ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_4);
-	for(counter_4=0; counter_4 <= Cycles; counter_4++){}
-}
-void SchM_50ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_5);
-	for(counter_5=0; counter_5 <= Cycles; counter_5++){}
-}
-void SchM_100ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_C, LedBar_6);
-	for(counter_6=0;counter_6 <= Cycles; counter_6++){}
-}*/
-/*============================================================================*/
-
- /* Notice: the file ends with a blank new line to avoid compiler warnings */
+#endif  /* Notice: the file ends with a blank new line to avoid compiler warnings */

@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
 * $Source: SchM.h $
-* $Revision: version 3 $
-* $Author: Rodrigo Mortera $
-* $Date: 17/Nov/2017 $
+* $Revision: version 4 $
+* $Author: Rafael Sanchez $
+* $Date: 22/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -36,8 +36,9 @@
 /*----------------------------------------------------------------------------*/
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
 /*  Rafael Sanchez   |      2             |  Update OsTick, difenes where the */
-/*     				|                    |  tasks status change               */
+/*     				       |                    |  tasks status change              */
 /* Rodrigo Mortera   |      3             | include overload, background functions*/
+/* Rafael Sanchez   |       4             | edit num of tasks*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -55,7 +56,8 @@
 /*============================================================================*/
 
 /* Constants and types */
-#define NUM_OF_TASKS (0x6)
+//#define NUM_OF_TASKS (0x6)
+#define NUM_OF_TASKS (0x1)
 
 const SchM_ConfigType *GlbSchMConfig;
 

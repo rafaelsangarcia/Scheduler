@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: SchM_Cfg.h
- * $Revision: 1
- * $Author: Rodrigo Mortera
- * $Date: 17/NOV/2017
+ * $Revision: 2
+ * $Author: Rafael Sanchez
+ * $Date: 22/NOV/2017
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -35,6 +35,7 @@
 /*  Author           |        Version     |           DESCRIPTION             */
 /*----------------------------------------------------------------------------*/
 /*  Rodrigo Mortera   |      1             |  Use the template and add the code*/
+/*  Rodrigo Mortera   |      2             | edit structs*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -58,31 +59,34 @@
 typedef uint8_t SchM_TaskOffsetType;
 
 typedef enum{
-	SCHM_OFFSET_3P125MS = (T_UBYTE) 0x00u,
+	SCHM_OFFSET_1MS = (T_UBYTE) 0x00u,
+	/*SCHM_OFFSET_3P125MS = (T_UBYTE) 0x00u,
 	SCHM_OFFSET_6P25MS  = (T_UBYTE) 0x01u,
 	SCHM_OFFSET_12P5MS  = (T_UBYTE) 0x02u,
 	SCHM_OFFSET_25MS    = (T_UBYTE) 0x03u,
 	SCHM_OFFSET_50MS    = (T_UBYTE) 0x05u,
-	SCHM_OFFSET_100MS   = (T_UBYTE) 0x06u
+	SCHM_OFFSET_100MS   = (T_UBYTE) 0x06u*/
 } Schm_TaskOffsetType;
 
 typedef enum{
-	SCHM_MASK_3P125MS = 0x03,
+	SCHM_MASK_1MS = 0x01,
+	/*SCHM_MASK_3P125MS = 0x03,
 	SCHM_MASK_6P25MS = 0x07,
 	SCHM_MASK_12P5MS = 0x0F,
 	SCHM_MASK_25MS = 0x1F,
 	SCHM_MASK_50MS = 0x3F,
-	SCHM_MASK_100MS = 0x7F,
+	SCHM_MASK_100MS = 0x7F,*/
 }SchM_TaskMaskType;
 
 typedef enum {
 	SCHM_TASKID_BKG,
-	SCHM_TASKID_3P125MS,
+	SCHM_TASKID_1MS
+	/*SCHM_TASKID_3P125MS,
 	SCHM_TASKID_6P25MS,
 	SCHM_TASKID_12P5MS,
 	SCHM_TASKID_25MS,
 	SCHM_TASKID_50MS,
-	SCHM_TASKID_100MS
+	SCHM_TASKID_100MS*/
 }SchM_TaskIDType;
 
 typedef struct{

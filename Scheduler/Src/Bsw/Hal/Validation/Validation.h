@@ -4,18 +4,15 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- ** $Source: SchM_Tasks.c $
- * $Revision: version 3 $
- * $Author: Rafael Sanchez $
- * $Date: 22/Nov/2017 $
+* $Source: Validation.h $
+* $Revision: version 1 $
+* $Author: Rafael Sanchez $
+* $Date: 22/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
 /** \file
-    short description in one sentence end with dot.
-    detailed
-    multiline
-    description of the file
+
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */
@@ -32,79 +29,46 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  Author           |        Version     |           DESCRIPTION             */
+/*  Author         	   |        Version     | Descritpion											*/
 /*----------------------------------------------------------------------------*/
-/*  Rafael Sanchez   |      1             |  Use the template and add the code*/
-/*  Rafael Sanchez   |      2             | Fill each task turning on/off leds*/
-/*  Rafael Sanchez   |      3             | add SchM_1ms_Task*/
+/*    Rafael Sanchez   |          1         |  Create the validate functions*/
+/*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
 /*
- * $Log: filename.c  $
+ * $Log: filename.h  $
   ============================================================================*/
 
+/*typedef unsigned int u32_t;//hola=Lpit0_ch1, contador, Lpit0_ch0
+typedef int s32_t;//counter*/
 /* Includes */
-#include "SchM_Tasks.h"
-#include "Dio.h"
-#include "UpDown.h"
+
+
+#ifndef BSW_HAL_VALIDATION_VALIDATION_H_
+#define BSW_HAL_VALIDATION_VALIDATION_H_
+
+#include "Port.h"
+#include "General.h"
+#include "Std_Types.h"
 
 
 /*============================================================================*/
+/* Constants and types */
+//-------------------typedef unsigned int T_U32;
+/*============================================================================*/
+/* Exported Variables */
+/*============================================================================*/
+//int lpit0_ch0_flag_counter;
+//int switch_flag;
+//int lpit0_ch1_flag_counter;
+/*============================================================================*/
+/* Exported functions prototypes */
+/*============================================================================*/
+T_ULONG halValidation_u32_ValidateUpButton();
+/*T_U32 halValidation_u32_ValidateDownButton();
+T_U32 halValidation_u32_ValidateAntipinch();*/
 
-/* Constants and types  */
 /*============================================================================*/
 
-/* Variables */
-/*============================================================================*/
-
-/* Private functions prototypes */
-/*============================================================================*/
-
-/* Inline functions */
-/*============================================================================*/
-
-/* Private functions */
-/*============================================================================*/
-
-/** Check if action is allowed by overload protection.
- To avoid overheating of the door locking motors and hardware failure
- the software shall limit the number of activations in a short period.
- This function checks if the limitation algorithm allows or not
- a certain activation of the motors.
- \returns TRUE if the activation is allowed, FALSE if not
-*/
-
-/* Exported functions */
-void SchM_1ms_Task ( void ){
-	if ( halValidation_u32_ValidateUpButton() == 1 ) {
-		appUpDown_void_set_timer1();
-		if (appUpDown_u32_validation10ms() == 1 ){
-			Dio_PortTooglePin(PORTCH_D, RedLed);
-			appUpDown_void_clear_timer1();
-		}
-	}
-}
-/*void SchM_6p25ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_2);
-	for(counter_2=0; counter_2 <= Cycles; counter_2++){}
-}
-void SchM_12p5ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_3);
-	for(counter_3=0; counter_3 <= Cycles; counter_3++){}
-}
-void SchM_25ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_4);
-	for(counter_4=0; counter_4 <= Cycles; counter_4++){}
-}
-void SchM_50ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_5);
-	for(counter_5=0; counter_5 <= Cycles; counter_5++){}
-}
-void SchM_100ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_C, LedBar_6);
-	for(counter_6=0;counter_6 <= Cycles; counter_6++){}
-}*/
-/*============================================================================*/
-
- /* Notice: the file ends with a blank new line to avoid compiler warnings */
+#endif  /* Notice: the file ends with a blank new line to avoid compiler warnings */

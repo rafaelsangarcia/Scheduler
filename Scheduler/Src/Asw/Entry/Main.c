@@ -12,7 +12,7 @@
 
 int main(void)
 {
-	WDOG_disable();
+ 	WDOG_disable();
 	PORT_init();             				/* Configure ports */
 	SOSC_init_8MHz();        				/* Initialize system oscilator for 8 MHz xtal */
 	SPLL_init_160MHz();      				/* Initialize SPLL to 160 MHz with 8 MHz SOSC */

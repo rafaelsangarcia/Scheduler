@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
 * $Source: SchM_Tasks.h $
-* $Revision: version 2 $
+* $Revision: version 3 $
 * $Author: Rafael Sanchez $
-* $Date: 17/Nov/2017 $
+* $Date: 22/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -36,7 +36,7 @@
 /*----------------------------------------------------------------------------*/
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
 /*  Rafael Sanchez   |      2             | Add Port.h                        */
-
+/*  Rafael Sanchez   |      3             | Create SchM_1ms_Task              */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -59,22 +59,23 @@
 /*============================================================================*/
 
 /* Exported Variables */
-static int counter_1;
+/*static int counter_1;
 static int counter_2;
 static int counter_3;
 static int counter_4;
 static int counter_5;
-static int counter_6;
+static int counter_6;*/
 
 /*============================================================================*/
 
 /* Exported functions prototypes */
-extern void SchM_3p125ms_Task ( void );
+extern void SchM_1ms_Task ( void );
+/*extern void SchM_3p125ms_Task ( void );
 extern void SchM_6p25ms_Task ( void );
 extern void SchM_12p5ms_Task ( void );
 extern void SchM_25ms_Task ( void );
 extern void SchM_50ms_Task ( void );
-extern void SchM_100ms_Task ( void );
+extern void SchM_100ms_Task ( void );*/
 /*============================================================================*/
 
 #endif /* BSW_SERVICES_SCHM_SCHM_TASKS_H_ */
