@@ -130,8 +130,6 @@ void SchM_1ms_Task ( void ){
 
 		break;
 
-
-
 	case 2: /*One Touch Up*/
 		halLeds_void_TurnOnBlueLed(1);
 		halLeds_void_TurnOnGreenLed(0);
@@ -209,61 +207,69 @@ void SchM_1ms_Task ( void ){
 		break;
 
 	case 4: /*One Touch Down */
-		halLeds_void_TurnOnBlueLed(0);
-		halLeds_void_TurnOnGreenLed(1);
-		appTimer_void_set_timer0();
-		if (u32_lpit0_ch0_flag_counter == 400){
+		if (s32_switch_flag < 0) {
+			state = 0;
+		}
+		else{
+			halLeds_void_TurnOnBlueLed(0);
+			halLeds_void_TurnOnGreenLed(1);
+			appTimer_void_set_timer0();
 
-			switch (s32_switch_flag) {
-			case 0:
-				halLeds_void_TurnOnLedBar1(0);
-				halLeds_void_TurnOnGreenLed(0);
-				s32_switch_flag= -1;
-				state = 0;
+			if (u32_lpit0_ch0_flag_counter == 400){
+
+				switch (s32_switch_flag) {
+				case 0:
+					halLeds_void_TurnOnLedBar1(0);
+					halLeds_void_TurnOnGreenLed(0);
+					s32_switch_flag= -1;
+					state = 0;
+					break;
+
+				case 1:
+					halLeds_void_TurnOnLedBar2(0);
+					break;
+
+				case 2:
+					halLeds_void_TurnOnLedBar3(0);
+					break;
+
+				case 3:
+					halLeds_void_TurnOnLedBar4(0);
+					break;
+
+				case 4:
+					halLeds_void_TurnOnLedBar5(0);
+					break;
+
+				case 5:
+					halLeds_void_TurnOnLedBar6(0);
+					break;
+
+				case 6:
+					halLeds_void_TurnOnLedBar7(0);
+					break;
+
+				case 7:
+					halLeds_void_TurnOnLedBar8(0);
+					break;
+
+				case 8:
+					halLeds_void_TurnOnLedBar9(0);
+					break;
+
+				case 9:
+					//halWinMov_void_ToggleBlueLed(0); /* Toggle output on port D0 (blue LED) */
+					halLeds_void_TurnOnLedBar10(0);
+
+					break;
+					default:
 				break;
-
-			case 1:
-				halLeds_void_TurnOnLedBar2(0);
-				break;
-
-			case 2:
-				halLeds_void_TurnOnLedBar3(0);
-				break;
-
-			case 3:
-				halLeds_void_TurnOnLedBar4(0);
-				break;
-
-			case 4:
-				halLeds_void_TurnOnLedBar5(0);
-				break;
-
-			case 5:
-				halLeds_void_TurnOnLedBar6(0);
-				break;
-
-			case 6:
-				halLeds_void_TurnOnLedBar7(0);
-				break;
-
-			case 7:
-				halLeds_void_TurnOnLedBar8(0);
-				break;
-
-			case 8:
-				halLeds_void_TurnOnLedBar9(0);
-				break;
-
-			case 9:
-				//halWinMov_void_ToggleBlueLed(0); /* Toggle output on port D0 (blue LED) */
-				halLeds_void_TurnOnLedBar10(0);
-
-				break;
+				}
+				if (s32_switch_flag>0) {
+					s32_switch_flag--;
+				}
+				appTimer_void_clear_timer0();
 			}
-			if (s32_switch_flag>0) {
-				s32_switch_flag--;
-			}
-			appTimer_void_clear_timer0();
 		}
 		break;
 
@@ -326,65 +332,69 @@ void SchM_1ms_Task ( void ){
 		break;
 
 	case 6: /*Manual Down*/
-		halLeds_void_TurnOnBlueLed(0);
-		halLeds_void_TurnOnGreenLed(1);
-		appTimer_void_set_timer0();
-		if (u32_lpit0_ch0_flag_counter == 400){
-
-			switch (s32_switch_flag) {
-			case 0:
-				halLeds_void_TurnOnLedBar1(0);
-				s32_switch_flag= -1;
-				state = 0;
-				break;
-
-			case 1:
-				halLeds_void_TurnOnLedBar2(0);
-				break;
-
-			case 2:
-				halLeds_void_TurnOnLedBar3(0);
-				break;
-
-			case 3:
-				halLeds_void_TurnOnLedBar4(0);
-				break;
-
-			case 4:
-				halLeds_void_TurnOnLedBar5(0);
-				break;
-
-			case 5:
-				halLeds_void_TurnOnLedBar6(0);
-				break;
-
-			case 6:
-				halLeds_void_TurnOnLedBar7(0);
-				break;
-
-			case 7:
-				halLeds_void_TurnOnLedBar8(0);
-				break;
-
-			case 8:
-				halLeds_void_TurnOnLedBar9(0);
-				break;
-
-			case 9:
-				//halWinMov_void_ToggleBlueLed(0); /* Toggle output on port D0 (blue LED) */
-				halLeds_void_TurnOnLedBar10(0);
-
-				break;
-			}
-			if (s32_switch_flag>0) {
-				s32_switch_flag--;
-			}
-			appTimer_void_clear_timer0();
+		if (s32_switch_flag < 0) {
 			state = 0;
-
-			halLeds_void_TurnOnGreenLed(0);
 		}
+		else {
+			halLeds_void_TurnOnBlueLed(0);
+			halLeds_void_TurnOnGreenLed(1);
+			appTimer_void_set_timer0();
+			if (u32_lpit0_ch0_flag_counter == 400){
 
+				switch (s32_switch_flag) {
+				case 0:
+					halLeds_void_TurnOnLedBar1(0);
+					s32_switch_flag= -1;
+					state = 0;
+					break;
+
+				case 1:
+					halLeds_void_TurnOnLedBar2(0);
+					break;
+
+				case 2:
+					halLeds_void_TurnOnLedBar3(0);
+					break;
+
+				case 3:
+					halLeds_void_TurnOnLedBar4(0);
+					break;
+
+				case 4:
+					halLeds_void_TurnOnLedBar5(0);
+					break;
+
+				case 5:
+					halLeds_void_TurnOnLedBar6(0);
+					break;
+
+				case 6:
+					halLeds_void_TurnOnLedBar7(0);
+					break;
+
+				case 7:
+					halLeds_void_TurnOnLedBar8(0);
+					break;
+
+				case 8:
+					halLeds_void_TurnOnLedBar9(0);
+					break;
+
+				case 9:
+					//halWinMov_void_ToggleBlueLed(0); /* Toggle output on port D0 (blue LED) */
+					halLeds_void_TurnOnLedBar10(0);
+
+					break;
+				}
+				if (s32_switch_flag>0) {
+					s32_switch_flag--;
+				}
+				appTimer_void_clear_timer0();
+				state = 0;
+
+				halLeds_void_TurnOnGreenLed(0);
+			}
+		}
 		break;
 
 	case 7: /*Antipinch Validation State */
