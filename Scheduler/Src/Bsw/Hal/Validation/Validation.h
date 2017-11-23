@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
 * $Source: Validation.h $
-* $Revision: version 2 $
+* $Revision: version 3 $
 * $Author: Rafael Sanchez $
 * $Date: 23/Nov/2017 $
  */
@@ -33,6 +33,7 @@
 /*----------------------------------------------------------------------------*/
 /*    Rafael Sanchez   |          1         |  Create the validate functions*/
 /*    Rafael Sanchez   |          2         |  Split and add Validation functions*/
+/*    Rafael Sanchez   |          3         |  Add validation prototype function*/
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
@@ -68,7 +69,7 @@ typedef int s32_t;//counter*/
 /*============================================================================*/
 T_ULONG halValidation_u32_ValidateUpButton();
 T_ULONG halValidation_u32_ValidateDownButton();
-/*T_U32 halValidation_u32_ValidateAntipinch();*/
+T_ULONG halValidation_u32_ValidateAntipinchButton();
 T_ULONG halValidation_u32_Validation10ms();
 T_ULONG halValidation_u32_Validation500ms();
 

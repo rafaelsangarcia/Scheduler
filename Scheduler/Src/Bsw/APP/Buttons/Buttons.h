@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  * $Source: Buttons.h $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Rafael Sanchez $
  * $Date: 23/Nov/2017 $
  */
@@ -35,6 +35,7 @@
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
 /* Rafael Sanchez       |         1         | Prototype function buttons*/
+/* Rafael Sanchez       |         2         | Prototype antipinch function    */
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
@@ -58,6 +59,7 @@
 /* Exported functions prototypes */
 T_ULONG appButtons_u32_PushUpButton();
 T_ULONG appButtons_u32_PushDownButton();
+T_ULONG appButtons_u32_AntipinchButton();
 T_ULONG appButtons_u32_Push10ms();
 /*============================================================================*/
 

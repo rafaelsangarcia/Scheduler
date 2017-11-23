@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  * $Source: Buttons.c $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Rafael Sanchez $
  * $Date: 23/Nov/2017 $
  */
@@ -35,6 +35,7 @@
 /*  DATABASE           |        VERSION      | DESCRIPTION                    */
 /*----------------------------------------------------------------------------*/
 /*   Rafael Sanchez   |         1           | Create the buttons functions*/
+/*   Rafael Sanchez   |         2           | Add antipinch validation callback*/
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
@@ -75,6 +76,14 @@ T_ULONG appButtons_u32_PushUpButton(){
 }
 T_ULONG appButtons_u32_PushDownButton(){
 	if(halValidation_u32_ValidateDownButton()){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+T_ULONG appButtons_u32_AntipinchButton(){
+	if(halValidation_u32_ValidateAntipinchButton()){
 		return 1;
 	}
 	else{

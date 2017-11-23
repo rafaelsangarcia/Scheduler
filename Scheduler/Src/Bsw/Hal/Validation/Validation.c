@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  * $Source: Validation.c $
- * $Revision: version  2$
+ * $Revision: version  3$
  * $Author: Rafael Sanchez $
  * $Date: 23/Nov/2017 $
  */
@@ -33,7 +33,8 @@
 /*  Author         	   |        Version     | Descritpion					  */
 /*----------------------------------------------------------------------------*/
 /*    Rafael Sanchez   |         1          |   Create validate function      */
-/*    Rafael Sanchez   |         2          |   plite and add validate fucntions      */
+/*    Rafael Sanchez   |         2          |   split and add validate function*/
+/*    Rafael Sanchez   |         3          |   Add validation function				*/
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
@@ -80,6 +81,14 @@ T_ULONG halValidation_u32_ValidateDownButton(){
 			return 0;
 		}
 }
+T_ULONG halValidation_u32_ValidateAntipinchButton(){
+	if(PTE->PDIR & (1<<Antipinch)){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+}
 T_ULONG halValidation_u32_Validation10ms() {
 	if (u32_lpit0_ch1_flag_counter >= 10) {
 		return 1;
@@ -96,7 +105,6 @@ T_ULONG halValidation_u32_Validation500ms() {
 		return 0;
 	}
 }
-
 /*T_U32 halValidation_u32_ValidateAntipinch(){
 	if(PTE->PDIR & (1<<Antipinch)){
 				return 1;

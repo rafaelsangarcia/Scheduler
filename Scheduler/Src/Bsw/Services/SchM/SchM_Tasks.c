@@ -5,8 +5,8 @@
 /*============================================================================*/
 /*!
  ** $Source: SchM_Tasks.c $
- * $Revision: version 7 $
- * $Author: Rodrigo Mortera $
+ * $Revision: version 8 $
+ * $Author: Rafael Sanchez $
  * $Date: 23/Nov/2017 $
  */
 /*============================================================================*/
@@ -39,8 +39,9 @@
 /*  Rafael Sanchez   |      3             | add SchM_1ms_Task*/
 /*  Rafael Sanchez   |      4             | add start to build STATEMACHINE*/
 /*  Rafael Sanchez   |      5             | reorder the state & add one touch up function*/
-/*  Rodrigo Mortera   |      6             | Add one touch down function*/
-/*  Rodrigo Mortera  |       7             | Add manual up & down functions*/
+/*  Rodrigo Mortera  |      6             | Add one touch down function*/
+/*  Rodrigo Mortera  |      7             | Add manual up & down functions*/
+/*  Rodrigo Mortera  |      8             | Add antipinch functions*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -83,7 +84,7 @@ T_SLONG s32_switch_flag = -1;
 void SchM_1ms_Task ( void ){
 	static unsigned char state = 0;
 	switch(state){
-	case 0:
+	case 0: /*idle State*/
 		if ( appButtons_u32_PushUpButton() == 1 ) {
 			appTimer_void_set_timer1();
 			if (appButtons_u32_Push10ms() == 1) {
@@ -103,10 +104,11 @@ void SchM_1ms_Task ( void ){
 		}
 		break;
 
-	case 1:
+	case 1: /*Behavior UP*/
 		if( appButtons_u32_PushUpButton() == 0 ){ //up_off
 			if(halValidation_u32_Validation500ms() == 0){
-				state = 2;
+				//state = 2;
+				state = 7;
 			}
 		}
 		else {
@@ -120,7 +122,9 @@ void SchM_1ms_Task ( void ){
 
 		break;
 
-	case 2: //behavior up
+
+
+	case 2: /*One Touch Up*/
 		halLeds_void_TurnOnBlueLed(1);
 		halLeds_void_TurnOnGreenLed(0);
 		appTimer_void_set_timer0();
@@ -173,11 +177,14 @@ void SchM_1ms_Task ( void ){
 				break;
 			}
 			appTimer_void_clear_timer0();
+			if(s32_switch_flag < 9){
+				state = 7;
+			}
 		}
 
 		break;
 
-	case 3:
+	case 3: /*Behavior Down*/
 		if( appButtons_u32_PushDownButton() == 0 ){ //up_off
 			if(halValidation_u32_Validation500ms() == 0){
 				state = 4;
@@ -193,7 +200,7 @@ void SchM_1ms_Task ( void ){
 		}
 		break;
 
-	case 4: //behavior up
+	case 4: /*One Touch Down */
 		halLeds_void_TurnOnBlueLed(0);
 		halLeds_void_TurnOnGreenLed(1);
 		appTimer_void_set_timer0();
@@ -253,7 +260,7 @@ void SchM_1ms_Task ( void ){
 
 		break;
 
-	case 5: //behavior up
+	case 5: /*Manual Up*/
 		halLeds_void_TurnOnBlueLed(1);
 		halLeds_void_TurnOnGreenLed(0);
 		appTimer_void_set_timer0();
@@ -311,7 +318,7 @@ void SchM_1ms_Task ( void ){
 
 		break;
 
-	case 6: //behavior up
+	case 6: /*Manual Down*/
 		halLeds_void_TurnOnBlueLed(0);
 		halLeds_void_TurnOnGreenLed(1);
 		appTimer_void_set_timer0();
@@ -373,52 +380,18 @@ void SchM_1ms_Task ( void ){
 
 		break;
 
-	}
-}
-
-
-
-
-/*case 0:
-			if ( appUpDown_u32_PushUpButton() == 1 ) {
-				appUpDown_void_set_timer1();
-				if (appUpDown_u32_validation10ms() == 1 ){
-					state = 1;
-				}
-			}
-			if (appUpDown_u32_PushUpButton() == 1){
-				appUpDown_void_clear_timer1();
-			}
-		break;
-
-		case 1:
-			if( appUpDown_u32_PushUpButton() == 0 ){ //up_off
-				if(appUpDown_u32_validation500ms() == 0){
-					//onetouch
-				}
-			}
-			else{
-				if(appUpDown_u32_validation500ms() == 1){
-					appUpDown_void_ManualUp();
-				}
-			}
-		break;*/
-
-/*Idlle state*/
-
-
-//Dio_PortTooglePin(PORTCH_D, RedLed);
-//appUpDown_void_clear_timer1();
-
-
-
-/*if ( halValidation_u32_ValidateUpButton() == 1 ) {
-		appUpDown_void_set_timer1();
-		if (appUpDown_u32_validation10ms() == 1 ){
-			Dio_PortTooglePin(PORTCH_D, RedLed);
-			appUpDown_void_clear_timer1();
+	case 7: /*Antipinch Validation State */
+		if(appButtons_u32_AntipinchButton() == 1){
+			state = 4;
 		}
-	}*/
+		else{
+			state = 2;
+		}
+		break;
+	}
+
+
+}
 /*============================================================================*/
 
 /* Notice: the file ends with a blank new line to avoid compiler warnings */
