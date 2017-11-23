@@ -20,6 +20,16 @@ void Dio_PortClearPin(DioPortType DioPort, uint32_t DioPin)
 	Port[DioPort]->PCOR |= (1<<DioPin);
 }
 
+void Dio_PortSetLedBar(DioPortType DioPort, uint32_t DioPin)
+{
+	Port[DioPort]->PCOR |= (1<<DioPin);
+}
+
+void Dio_PortClearLedBar(DioPortType DioPort, uint32_t DioPin)
+{
+	Port[DioPort]->PSOR |= (1<<DioPin);
+}
+
 void Dio_PortTooglePin(DioPortType DioPort, uint32_t DioPin)
 {
 	Port[DioPort]->PTOR |= (1<<DioPin);

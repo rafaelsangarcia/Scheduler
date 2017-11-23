@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  ** $Source: SchM_Tasks.c $
- * $Revision: version 3 $
+ * $Revision: version 5 $
  * $Author: Rafael Sanchez $
- * $Date: 22/Nov/2017 $
+ * $Date: 23/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -37,6 +37,8 @@
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
 /*  Rafael Sanchez   |      2             | Fill each task turning on/off leds*/
 /*  Rafael Sanchez   |      3             | add SchM_1ms_Task*/
+/*  Rafael Sanchez   |      4             | add start to build STATEMACHINE*/
+/*  Rafael Sanchez   |      5             | reorder the state*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -46,9 +48,8 @@
 
 /* Includes */
 #include "SchM_Tasks.h"
-#include "Dio.h"
-#include "UpDown.h"
-
+/*#include "UpDown.h"
+#include "Buttons.h"*/
 
 /*============================================================================*/
 
@@ -56,6 +57,7 @@
 /*============================================================================*/
 
 /* Variables */
+T_SLONG s32_switch_flag = -1;
 /*============================================================================*/
 
 /* Private functions prototypes */
@@ -77,34 +79,127 @@
 
 /* Exported functions */
 void SchM_1ms_Task ( void ){
-	if ( halValidation_u32_ValidateUpButton() == 1 ) {
+	static unsigned char state = 0;
+	switch(state){
+		case 0:
+			if ( appButtons_u32_PushUpButton() == 1 ) {
+				appTimer_void_set_timer1();
+				if (appButtons_u32_Push10ms() == 1) {
+					state = 1;
+				}
+			}
+			if (appButtons_u32_PushUpButton() == 0 && appButtons_u32_PushDownButton() == 0) {
+				appTimer_void_clear_timer1();
+			}
+		break;
+
+		case 1:
+			if( appButtons_u32_PushUpButton() == 0 ){ //up_off
+				if(halValidation_u32_Validation500ms() == 0){
+					state = 2;
+				}
+			 }
+		break;
+
+		case 2: //behavior up
+			appTimer_void_set_timer0();
+			if (u32_lpit0_ch0_flag_counter == 400){
+				if (s32_switch_flag<9) {
+					s32_switch_flag++;
+				}
+				switch (s32_switch_flag) {
+					case 0:
+						halLeds_void_TurnOnLedBar1(1);
+						break;
+
+					case 1:
+						halLeds_void_TurnOnLedBar2(1);
+						break;
+
+					case 2:
+						halLeds_void_TurnOnLedBar3(1);
+						break;
+
+					case 3:
+						halLeds_void_TurnOnLedBar4(1);
+						break;
+
+					case 4:
+						halLeds_void_TurnOnLedBar5(1);
+						break;
+
+					case 5:
+						halLeds_void_TurnOnLedBar6(1);
+						break;
+
+					case 6:
+						halLeds_void_TurnOnLedBar7(1);
+						break;
+
+					case 7:
+						halLeds_void_TurnOnLedBar8(1);
+						break;
+
+					case 8:
+						halLeds_void_TurnOnLedBar9(1);
+						break;
+
+					case 9:
+						//halWinMov_void_ToggleBlueLed(0); /* Toggle output on port D0 (blue LED) */
+						halLeds_void_TurnOnBlueLed(0);
+						halLeds_void_TurnOnLedBar10(1);
+						state = 0;
+					break;
+				}
+				appTimer_void_clear_timer0();
+			}
+
+		break;
+	}
+}
+
+
+
+		/*case 0:
+			if ( appUpDown_u32_PushUpButton() == 1 ) {
+				appUpDown_void_set_timer1();
+				if (appUpDown_u32_validation10ms() == 1 ){
+					state = 1;
+				}
+			}
+			if (appUpDown_u32_PushUpButton() == 1){
+				appUpDown_void_clear_timer1();
+			}
+		break;
+
+		case 1:
+			if( appUpDown_u32_PushUpButton() == 0 ){ //up_off
+				if(appUpDown_u32_validation500ms() == 0){
+					//onetouch
+				}
+			}
+			else{
+				if(appUpDown_u32_validation500ms() == 1){
+					appUpDown_void_ManualUp();
+				}
+			}
+		break;*/
+
+		/*Idlle state*/
+
+
+			//Dio_PortTooglePin(PORTCH_D, RedLed);
+			//appUpDown_void_clear_timer1();
+
+
+
+	/*if ( halValidation_u32_ValidateUpButton() == 1 ) {
 		appUpDown_void_set_timer1();
 		if (appUpDown_u32_validation10ms() == 1 ){
 			Dio_PortTooglePin(PORTCH_D, RedLed);
 			appUpDown_void_clear_timer1();
 		}
-	}
-}
-/*void SchM_6p25ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_2);
-	for(counter_2=0; counter_2 <= Cycles; counter_2++){}
-}
-void SchM_12p5ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_3);
-	for(counter_3=0; counter_3 <= Cycles; counter_3++){}
-}
-void SchM_25ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_4);
-	for(counter_4=0; counter_4 <= Cycles; counter_4++){}
-}
-void SchM_50ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_B, LedBar_5);
-	for(counter_5=0; counter_5 <= Cycles; counter_5++){}
-}
-void SchM_100ms_Task ( void ){
-	Dio_PortTooglePin(PORTCH_C, LedBar_6);
-	for(counter_6=0;counter_6 <= Cycles; counter_6++){}
-}*/
+	}*/
 /*============================================================================*/
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

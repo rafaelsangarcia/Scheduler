@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
 * $Source: SchM_Tasks.h $
-* $Revision: version 3 $
+* $Revision: version 4 $
 * $Author: Rafael Sanchez $
-* $Date: 22/Nov/2017 $
+* $Date: 23/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -37,6 +37,7 @@
 /*  Rafael Sanchez   |      1             |  Use the template and add the code*/
 /*  Rafael Sanchez   |      2             | Add Port.h                        */
 /*  Rafael Sanchez   |      3             | Create SchM_1ms_Task              */
+/*  Rafael Sanchez   |      4            | Star build StateMachine              */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -48,8 +49,13 @@
 
 
 /* Includes */
-#include "Std_Types.h"
-#include "Port.h"
+//#include "Std_Types.h"
+//#include "Port.h"
+//#include "Dio.h"
+#include "Buttons.h"
+#include "UpDown.h"
+#include "Timer.h"
+//#include "Validation.h"
 
 /*============================================================================*/
 
@@ -59,6 +65,7 @@
 /*============================================================================*/
 
 /* Exported Variables */
+
 /*static int counter_1;
 static int counter_2;
 static int counter_3;

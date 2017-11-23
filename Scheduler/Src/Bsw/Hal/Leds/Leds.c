@@ -4,8 +4,8 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- * $Source: Validation.c $
- * $Revision: version  2$
+ * $Source: Leds.c $
+ * $Revision: version 1 $
  * $Author: Rafael Sanchez $
  * $Date: 23/Nov/2017 $
  */
@@ -17,7 +17,7 @@
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */
-/* AUTOMOTIVE GROUP, T_U32erior Division, Body and Security                     */
+/* AUTOMOTIVE GROUP, T_ULONGerior Division, Body and Security                     */
 /* ALL RIGHTS RESERVED                                                        */
 /*                                                                            */
 /* The reproduction, transmission, or use of this document or its content is  */
@@ -32,8 +32,7 @@
 /*============================================================================*/
 /*  Author         	   |        Version     | Descritpion					  */
 /*----------------------------------------------------------------------------*/
-/*    Rafael Sanchez   |         1          |   Create validate function      */
-/*    Rafael Sanchez   |         2          |   plite and add validate fucntions      */
+/*    Rafael Sanchez   |         1          |   Create the Led behavior functions  */
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
@@ -45,16 +44,11 @@
 
 /* Includes */
 
-#include "Validation.h"
-//#include "General.h"
-//#include "Port.h"
-
+#include "Leds.h"
 /*============================================================================*/
 /* Constants and types  */
 /*============================================================================*/
 /* Variables */
-/*T_ULONG u32_lpit0_ch0_flag_counter = 0;
-T_ULONG u32_lpit0_ch1_flag_counter = 0;*/
 /*============================================================================*/
 /* Private functions prototypes */
 /*============================================================================*/
@@ -63,47 +57,150 @@ T_ULONG u32_lpit0_ch1_flag_counter = 0;*/
 /* Private functions */
 /*============================================================================*/
 /* Exported functions */
+// leds 0 prende , barled 1 prende
+void halLeds_void_TurnOnBlueLed(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortSetPin(PORTCH_D, BlueLed);
+    break;
 
-T_ULONG halValidation_u32_ValidateUpButton(){
-	if(PTC->PDIR & (1<<UpButton)){
-			return 1;
-		}
-		else{
-			return 0;
-		}
+    case 1:
+      Dio_PortClearPin(PORTCH_D, BlueLed);
+    break;
+  }
 }
-T_ULONG halValidation_u32_ValidateDownButton(){
-	if(PTC->PDIR & (1<<DownButton)){
-			return 1;
-		}
-		else{
-			return 0;
-		}
+void halLeds_void_TurnOnGreenLed(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortSetPin(PORTCH_D, GreenLed);
+    break;
+
+    case 1:
+      Dio_PortClearPin(PORTCH_D, GreenLed);
+    break;
+  }
 }
-T_ULONG halValidation_u32_Validation10ms() {
-	if (u32_lpit0_ch1_flag_counter >= 10) {
-		return 1;
-	}
-	else {
-		return 0;
-	}
+void halLeds_void_TurnOnRedLed(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortSetPin(PORTCH_D, RedLed);
+    break;
+
+    case 1:
+      Dio_PortClearPin(PORTCH_D, RedLed);
+    break;
+  }
 }
-T_ULONG halValidation_u32_Validation500ms() {
-	if (u32_lpit0_ch1_flag_counter >= 500) {
-		return 1;
-	}
-	else {
-		return 0;
-	}
+void halLeds_void_TurnOnLedBar1(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_C, LedBar_1);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_C, LedBar_1);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar2(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_B, LedBar_2);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_B, LedBar_2);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar3(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_B, LedBar_3);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_B, LedBar_3);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar4(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_B, LedBar_4);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_B, LedBar_4);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar5(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_B, LedBar_5);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_B, LedBar_5);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar6(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_C, LedBar_6);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_C, LedBar_6);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar7(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_C, LedBar_7);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_C, LedBar_7);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar8(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_E, LedBar_8);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_E, LedBar_8);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar9(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_E, LedBar_9);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_E, LedBar_9);
+    break;
+  }
+}
+void halLeds_void_TurnOnLedBar10(T_ULONG u32_status){
+  switch (u32_status) {
+    case 0:
+      Dio_PortClearPin(PORTCH_E, LedBar_10);
+    break;
+
+    case 1:
+      Dio_PortSetPin(PORTCH_E, LedBar_10);
+    break;
+  }
 }
 
-/*T_U32 halValidation_u32_ValidateAntipinch(){
-	if(PTE->PDIR & (1<<Antipinch)){
-				return 1;
-			}
-			else{
-				return 0;
-			}
-}*/
 /*============================================================================*/
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

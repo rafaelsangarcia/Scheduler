@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
 * $Source: Validation.h $
-* $Revision: version 1 $
+* $Revision: version 2 $
 * $Author: Rafael Sanchez $
-* $Date: 22/Nov/2017 $
+* $Date: 23/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -32,6 +32,7 @@
 /*  Author         	   |        Version     | Descritpion											*/
 /*----------------------------------------------------------------------------*/
 /*    Rafael Sanchez   |          1         |  Create the validate functions*/
+/*    Rafael Sanchez   |          2         |  Split and add Validation functions*/
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
@@ -50,24 +51,26 @@ typedef int s32_t;//counter*/
 
 #include "Port.h"
 #include "General.h"
-#include "Std_Types.h"
-
+//#include "Std_Types.h"
+// #include "Dio.h"
+ #include "Timer.h"
 
 /*============================================================================*/
 /* Constants and types */
 //-------------------typedef unsigned int T_U32;
 /*============================================================================*/
 /* Exported Variables */
+
 /*============================================================================*/
-//int lpit0_ch0_flag_counter;
-//int switch_flag;
-//int lpit0_ch1_flag_counter;
+
 /*============================================================================*/
 /* Exported functions prototypes */
 /*============================================================================*/
 T_ULONG halValidation_u32_ValidateUpButton();
-/*T_U32 halValidation_u32_ValidateDownButton();
-T_U32 halValidation_u32_ValidateAntipinch();*/
+T_ULONG halValidation_u32_ValidateDownButton();
+/*T_U32 halValidation_u32_ValidateAntipinch();*/
+T_ULONG halValidation_u32_Validation10ms();
+T_ULONG halValidation_u32_Validation500ms();
 
 /*============================================================================*/
 

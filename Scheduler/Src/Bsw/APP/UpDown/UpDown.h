@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: UpDown.h $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Rafael Sanchez $
- * $Date: 22/Nov/2017 $
+ * $Date: 23/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -35,6 +35,8 @@
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
 /* Rafael Sanchez       |         1         | Prototype creations to up & down the window*/
+/* Rafael Sanchez       |         2         | Reorder and split prototype functions*/
+
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
@@ -48,7 +50,13 @@
 
 /* Includes */
 //#include "Std_Types.h"
+#include "Buttons.h"
+#include "Timer.h"
 #include "Validation.h"
+#include "Leds.h"
+//#include "Port.h"
+//#include "Dio.h"
+
 
 /*============================================================================*/
 /* Constants and types */
@@ -58,15 +66,16 @@
 /* Exported Variables */
 /*============================================================================*/
 /* Exported functions prototypes */
-//void appUpDown_void_ManualUp();
+void appUpDown_void_ManualUp();
 //void appUpDown_void_ManualDown();
 T_ULONG appUpDown_u32_PushUpButton();
-//T_U32 appUpDown_u32_PushDownButton();
+T_ULONG appUpDown_u32_PushDownButton();
 //T_U32 appUpDown_u32_PushAntipinch();
-T_ULONG appUpDown_u32_validation10ms();
-//T_ULONG appUpDown_u32_validation500ms();
-void appUpDown_void_set_timer1();
-void appUpDown_void_clear_timer1();
+/*T_ULONG appUpDown_u32_validation10ms();
+T_ULONG appUpDown_u32_validation500ms();*/
+void app_void_behaviorUp();
+void app_void_oneTouchUp();
+T_ULONG appUpDown_u32_Push10ms();
 //void appUpDown_void_clearGPIO();
 //void appUpDown_void_default_Leds(T_ULONG led);
 

@@ -4,20 +4,22 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- * $Source: Validation.c $
- * $Revision: version  2$
+ * $Source: Timer.c $
+ * $Revision: version 1 $
  * $Author: Rafael Sanchez $
  * $Date: 23/Nov/2017 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
 /** \file
-    In this Win_Mov.c file, there are the function Timer, validation_10ms,
-		validation_500ms, Manual_up and Manual_down.
+    short description in one sentence end with dot.
+    detailed
+    multiline
+    description of the file
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */
-/* AUTOMOTIVE GROUP, T_U32erior Division, Body and Security                     */
+/* AUTOMOTIVE GROUP, Interior Division, Body and Security                     */
 /* ALL RIGHTS RESERVED                                                        */
 /*                                                                            */
 /* The reproduction, transmission, or use of this document or its content is  */
@@ -30,80 +32,54 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  Author         	   |        Version     | Descritpion					  */
+/*  DATABASE           |        VERSION      | DESCRIPTION                    */
 /*----------------------------------------------------------------------------*/
-/*    Rafael Sanchez   |         1          |   Create validate function      */
-/*    Rafael Sanchez   |         2          |   plite and add validate fucntions      */
+/*   Rafael Sanchez   |         1           |  Create the timer functions*/
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
 /*
  * $Log: filename.c  $
- *
+
   ============================================================================*/
-
 /* Includes */
-
-#include "Validation.h"
-//#include "General.h"
-//#include "Port.h"
-
+#include "Timer.h"
 /*============================================================================*/
 /* Constants and types  */
 /*============================================================================*/
 /* Variables */
-/*T_ULONG u32_lpit0_ch0_flag_counter = 0;
-T_ULONG u32_lpit0_ch1_flag_counter = 0;*/
+ T_ULONG u32_lpit0_ch0_flag_counter = 0;
+ T_ULONG u32_lpit0_ch1_flag_counter = 0;
 /*============================================================================*/
 /* Private functions prototypes */
+//void appUpDown_void_timer0();
 /*============================================================================*/
 /* Inline functions */
 /*============================================================================*/
 /* Private functions */
 /*============================================================================*/
+/** Check if action is allowed by overload protection.
+ To avoid overheating of the door locking motors and hardware failure
+ the software shall limit the number of activations in a short period.
+ This function checks if the limitation algorithm allows or not
+ a certain activation of the motors.
+ \returns TRUE if the activation is allowed, FALSE if not
+*/
 /* Exported functions */
-
-T_ULONG halValidation_u32_ValidateUpButton(){
-	if(PTC->PDIR & (1<<UpButton)){
-			return 1;
-		}
-		else{
-			return 0;
-		}
-}
-T_ULONG halValidation_u32_ValidateDownButton(){
-	if(PTC->PDIR & (1<<DownButton)){
-			return 1;
-		}
-		else{
-			return 0;
-		}
-}
-T_ULONG halValidation_u32_Validation10ms() {
-	if (u32_lpit0_ch1_flag_counter >= 10) {
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
-T_ULONG halValidation_u32_Validation500ms() {
-	if (u32_lpit0_ch1_flag_counter >= 500) {
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
-
-/*T_U32 halValidation_u32_ValidateAntipinch(){
-	if(PTE->PDIR & (1<<Antipinch)){
-				return 1;
-			}
-			else{
-				return 0;
-			}
-}*/
 /*============================================================================*/
+
+void appTimer_void_set_timer1(){
+  u32_lpit0_ch1_flag_counter++;
+}
+void appTimer_void_clear_timer1(){
+  u32_lpit0_ch1_flag_counter = 0;
+}
+void appTimer_void_set_timer0(){
+  u32_lpit0_ch0_flag_counter++;
+}
+void appTimer_void_clear_timer0(){
+  u32_lpit0_ch0_flag_counter = 0;
+}
+
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
