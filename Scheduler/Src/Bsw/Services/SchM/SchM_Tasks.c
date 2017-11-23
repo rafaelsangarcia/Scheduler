@@ -5,8 +5,8 @@
 /*============================================================================*/
 /*!
  ** $Source: SchM_Tasks.c $
- * $Revision: version 8 $
- * $Author: Rafael Sanchez $
+ * $Revision: version 9 $
+ * $Author: Rodrigo Mortera $
  * $Date: 23/Nov/2017 $
  */
 /*============================================================================*/
@@ -41,7 +41,8 @@
 /*  Rafael Sanchez   |      5             | reorder the state & add one touch up function*/
 /*  Rodrigo Mortera  |      6             | Add one touch down function*/
 /*  Rodrigo Mortera  |      7             | Add manual up & down functions*/
-/*  Rodrigo Mortera  |      8             | Add antipinch functions*/
+/*  Rafael Sanchez   |      8             | Add antipinch functions*/
+/*  Rodrigo Mortera  |      9             | Add 5 seconds waiting */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -61,6 +62,7 @@
 
 /* Variables */
 T_SLONG s32_switch_flag = -1;
+T_ULONG u32_Antipinch_Flag = 0;
 /*============================================================================*/
 
 /* Private functions prototypes */
@@ -90,6 +92,12 @@ void SchM_1ms_Task ( void ){
 			if (appButtons_u32_Push10ms() == 1) {
 				state = 1;
 			}
+		}
+
+		if (u32_Antipinch_Flag == 1){
+			state = 8;
+			u32_Antipinch_Flag=0;
+			appTimer_void_clear_timer1();
 		}
 
 		if (appButtons_u32_PushDownButton() == 1 ){
@@ -257,7 +265,6 @@ void SchM_1ms_Task ( void ){
 			}
 			appTimer_void_clear_timer0();
 		}
-
 		break;
 
 	case 5: /*Manual Up*/
@@ -382,10 +389,22 @@ void SchM_1ms_Task ( void ){
 
 	case 7: /*Antipinch Validation State */
 		if(appButtons_u32_AntipinchButton() == 1){
+			u32_Antipinch_Flag = 1;
 			state = 4;
 		}
 		else{
 			state = 2;
+		}
+		break;
+
+	case 8:
+		if (u32_lpit0_ch1_flag_counter<=5000){
+			state = 8;
+			appTimer_void_set_timer1();
+		}
+		else{
+			state = 0;
+			appTimer_void_clear_timer1();
 		}
 		break;
 	}
