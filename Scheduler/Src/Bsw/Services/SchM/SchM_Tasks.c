@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  ** $Source: SchM_Tasks.c $
- * $Revision: version 6 $
+ * $Revision: version 7 $
  * $Author: Rodrigo Mortera $
  * $Date: 23/Nov/2017 $
  */
@@ -38,8 +38,9 @@
 /*  Rafael Sanchez   |      2             | Fill each task turning on/off leds*/
 /*  Rafael Sanchez   |      3             | add SchM_1ms_Task*/
 /*  Rafael Sanchez   |      4             | add start to build STATEMACHINE*/
-/*  Rafael Sanchez   |      5             | reorder the state*/
+/*  Rafael Sanchez   |      5             | reorder the state & add one touch up function*/
 /*  Rodrigo Mortera   |      6             | Add one touch down function*/
+/*  Rodrigo Mortera  |       7             | Add manual up & down functions*/
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -108,6 +109,15 @@ void SchM_1ms_Task ( void ){
 				state = 2;
 			}
 		}
+		else {
+			//state= 0;
+			appTimer_void_set_timer1();
+			if(halValidation_u32_Validation500ms() == 1){
+				state = 5;
+			}
+
+		}
+
 		break;
 
 	case 2: //behavior up
@@ -173,6 +183,14 @@ void SchM_1ms_Task ( void ){
 				state = 4;
 			}
 		}
+		else {
+			//state= 0;
+			appTimer_void_set_timer1();
+			if(halValidation_u32_Validation500ms() == 1){
+				state = 6;
+			}
+
+		}
 		break;
 
 	case 4: //behavior up
@@ -234,6 +252,127 @@ void SchM_1ms_Task ( void ){
 		}
 
 		break;
+
+	case 5: //behavior up
+		halLeds_void_TurnOnBlueLed(1);
+		halLeds_void_TurnOnGreenLed(0);
+		appTimer_void_set_timer0();
+		if (u32_lpit0_ch0_flag_counter == 400){
+			if (s32_switch_flag<9) {
+				s32_switch_flag++;
+			}
+			switch (s32_switch_flag) {
+			case 0:
+				halLeds_void_TurnOnLedBar1(1);
+				break;
+
+			case 1:
+				halLeds_void_TurnOnLedBar2(1);
+				break;
+
+			case 2:
+				halLeds_void_TurnOnLedBar3(1);
+				break;
+
+			case 3:
+				halLeds_void_TurnOnLedBar4(1);
+				break;
+
+			case 4:
+				halLeds_void_TurnOnLedBar5(1);
+				break;
+
+			case 5:
+				halLeds_void_TurnOnLedBar6(1);
+				break;
+
+			case 6:
+				halLeds_void_TurnOnLedBar7(1);
+				break;
+
+			case 7:
+				halLeds_void_TurnOnLedBar8(1);
+				break;
+
+			case 8:
+				halLeds_void_TurnOnLedBar9(1);
+				break;
+
+			case 9:
+				//halWinMov_void_ToggleBlueLed(0); /* Toggle output on port D0 (blue LED) */
+				halLeds_void_TurnOnBlueLed(0);
+				halLeds_void_TurnOnLedBar10(1);
+				state = 0;
+				break;
+			}
+			appTimer_void_clear_timer0();
+			state = 0;
+		}
+
+		break;
+
+	case 6: //behavior up
+		halLeds_void_TurnOnBlueLed(0);
+		halLeds_void_TurnOnGreenLed(1);
+		appTimer_void_set_timer0();
+		if (u32_lpit0_ch0_flag_counter == 400){
+
+			switch (s32_switch_flag) {
+			case 0:
+				halLeds_void_TurnOnLedBar1(0);
+				s32_switch_flag= -1;
+				state = 0;
+				break;
+
+			case 1:
+				halLeds_void_TurnOnLedBar2(0);
+				break;
+
+			case 2:
+				halLeds_void_TurnOnLedBar3(0);
+				break;
+
+			case 3:
+				halLeds_void_TurnOnLedBar4(0);
+				break;
+
+			case 4:
+				halLeds_void_TurnOnLedBar5(0);
+				break;
+
+			case 5:
+				halLeds_void_TurnOnLedBar6(0);
+				break;
+
+			case 6:
+				halLeds_void_TurnOnLedBar7(0);
+				break;
+
+			case 7:
+				halLeds_void_TurnOnLedBar8(0);
+				break;
+
+			case 8:
+				halLeds_void_TurnOnLedBar9(0);
+				break;
+
+			case 9:
+				//halWinMov_void_ToggleBlueLed(0); /* Toggle output on port D0 (blue LED) */
+				halLeds_void_TurnOnLedBar10(0);
+
+				break;
+			}
+			if (s32_switch_flag>0) {
+				s32_switch_flag--;
+			}
+			appTimer_void_clear_timer0();
+			state = 0;
+
+			halLeds_void_TurnOnGreenLed(0);
+		}
+
+		break;
+
 	}
 }
 
