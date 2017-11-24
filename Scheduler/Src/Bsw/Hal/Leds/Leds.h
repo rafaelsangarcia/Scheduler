@@ -56,19 +56,19 @@
 /*============================================================================*/
 /* Exported functions prototypes */
 /*============================================================================*/
-void halLeds_void_TurnOnBlueLed(T_ULONG);
-void halLeds_void_TurnOnGreenLed(T_ULONG);
-void halLeds_void_TurnOnRedLed(T_ULONG);
-void halLeds_void_TurnOnLedBar1(T_ULONG);
-void halLeds_void_TurnOnLedBar2(T_ULONG);
-void halLeds_void_TurnOnLedBar3(T_ULONG);
-void halLeds_void_TurnOnLedBar4(T_ULONG);
-void halLeds_void_TurnOnLedBar5(T_ULONG);
-void halLeds_void_TurnOnLedBar6(T_ULONG);
-void halLeds_void_TurnOnLedBar7(T_ULONG);
-void halLeds_void_TurnOnLedBar8(T_ULONG);
-void halLeds_void_TurnOnLedBar9(T_ULONG);
-void halLeds_void_TurnOnLedBar10(T_ULONG);
+void halLeds_void_TurnOnBlueLed(T_UBYTE);
+void halLeds_void_TurnOnGreenLed(T_UBYTE);
+void halLeds_void_TurnOnRedLed(T_UBYTE);
+void halLeds_void_TurnOnLedBar1(T_UBYTE);
+void halLeds_void_TurnOnLedBar2(T_UBYTE);
+void halLeds_void_TurnOnLedBar3(T_UBYTE);
+void halLeds_void_TurnOnLedBar4(T_UBYTE);
+void halLeds_void_TurnOnLedBar5(T_UBYTE);
+void halLeds_void_TurnOnLedBar6(T_UBYTE);
+void halLeds_void_TurnOnLedBar7(T_UBYTE);
+void halLeds_void_TurnOnLedBar8(T_UBYTE);
+void halLeds_void_TurnOnLedBar9(T_UBYTE);
+void halLeds_void_TurnOnLedBar10(T_UBYTE);
 /*============================================================================*/
 
 #endif  /* Notice: the file ends with a blank new line to avoid compiler warnings */

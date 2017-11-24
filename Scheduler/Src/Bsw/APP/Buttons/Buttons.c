@@ -66,32 +66,32 @@
 */
 /* Exported functions */
 /*============================================================================*/
-T_ULONG appButtons_u32_PushUpButton(){
-	if(halValidation_u32_ValidateUpButton()){
+T_UBYTE appButtons_u8_PushUpButton(){
+	if(halValidation_u8_ValidateUpButton()){
 		return 1;
 	}
 	else{
 		return 0;
 	}
 }
-T_ULONG appButtons_u32_PushDownButton(){
-	if(halValidation_u32_ValidateDownButton()){
+T_UBYTE appButtons_u8_PushDownButton(){
+	if(halValidation_u8_ValidateDownButton()){
 		return 1;
 	}
 	else{
 		return 0;
 	}
 }
-T_ULONG appButtons_u32_AntipinchButton(){
-	if(halValidation_u32_ValidateAntipinchButton()){
+T_UBYTE appButtons_u8_AntipinchButton(){
+	if(halValidation_u8_ValidateAntipinchButton()){
 		return 1;
 	}
 	else{
 		return 0;
 	}
 }
-T_ULONG appButtons_u32_Push10ms(){
-	if(halValidation_u32_Validation10ms()){
+T_UBYTE appButtons_u8_Push10ms(){
+	if(halValidation_u8_Validation10ms()){
 		return 1;
 	}
 	else{
