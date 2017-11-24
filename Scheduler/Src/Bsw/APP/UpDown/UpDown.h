@@ -68,15 +68,15 @@
 /* Exported Variables */
 /*============================================================================*/
 /* Exported functions prototypes */
-T_UBYTE app_void_behaviorUp();
-T_UBYTE app_void_behaviorDown();
-T_UBYTE app_void_oneTouchUp();
-T_UBYTE app_void_oneTouchDown();
-T_UBYTE appUpDown_void_ManualUp();
-T_UBYTE appUpDown_void_ManualDown();
-T_UBYTE appUpDown_void_antipinch();
-T_UBYTE appDown_void_5sec();
-T_UBYTE appUpDown_Init();
+T_UBYTE appUpDown_u8_BehaviorUp();
+T_UBYTE appUpDown_u8_BehaviorDown();
+T_UBYTE appUpDown_u8_OneTouchUp();
+T_UBYTE appUpDown_u8_OneTouchDown();
+T_UBYTE appUpDown_u8_ManualUp();
+T_UBYTE appUpDown_u8_ManualDown();
+T_UBYTE appUpDown_u8_Antipinch();
+T_UBYTE appUpDown_u8_5sec();
+T_UBYTE appUpDown_u8_Init();
 //T_ULONG appUpDown_u32_Push10ms();
 //void appUpDown_void_clearGPIO();
 //void appUpDown_void_default_Leds(T_ULONG led);

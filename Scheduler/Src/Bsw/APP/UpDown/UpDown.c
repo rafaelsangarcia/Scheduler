@@ -54,14 +54,9 @@
 /* Variables */
 T_SLONG s32_switch_flag = -1;
 T_ULONG u32_Antipinch_Flag = 0;
-
 T_UBYTE manage = 0;
-//T_SLONG s32_switch_flag = -1;
-/*T_ULONG u32_lpit0_ch0_flag_counter = 0;
-T_ULONG u32_lpit0_ch1_flag_counter = 0;*/
 /*============================================================================*/
 /* Private functions prototypes */
-//void appUpDown_void_timer0();
 /*============================================================================*/
 /* Inline functions */
 /*============================================================================*/
@@ -77,22 +72,22 @@ T_ULONG u32_lpit0_ch1_flag_counter = 0;*/
 /* Exported functions */
 /*============================================================================*/
 
-T_UBYTE app_void_behaviorUp(){
-  if( appButtons_u32_PushUpButton() == 0 ){ //up_off
-    if(halValidation_u32_Validation500ms() == 0){
+T_UBYTE appUpDown_u8_BehaviorUp(){
+  if( appButtons_u8_PushUpButton() == 0 ){
+    if(halValidation_u8_Validation500ms() == 0){
       manage = 7;
     }
   }
   else {
     appTimer_void_set_timer1();
-    if(halValidation_u32_Validation500ms() == 1){
+    if(halValidation_u8_Validation500ms() == 1){
       manage = 5;
     }
   }
   return manage;
 }
 
-T_UBYTE app_void_oneTouchUp(){
+T_UBYTE appUpDown_u8_OneTouchUp(){
   halLeds_void_TurnOnBlueLed(1);
   halLeds_void_TurnOnGreenLed(0);
   appTimer_void_set_timer0();
@@ -154,7 +149,7 @@ T_UBYTE app_void_oneTouchUp(){
   return manage;
 }
 
-T_UBYTE app_void_oneTouchDown(){
+T_UBYTE appUpDown_u8_OneTouchDown(){
   if (s32_switch_flag < 0) {
     manage = 0;
   }
@@ -222,16 +217,16 @@ T_UBYTE app_void_oneTouchDown(){
   return manage;
 }
 
-T_UBYTE app_void_behaviorDown(){
-  if( appButtons_u32_PushDownButton() == 0 ){ //up_off
-    if(halValidation_u32_Validation500ms() == 0){
+T_UBYTE appUpDown_u8_BehaviorDown(){
+  if( appButtons_u8_PushDownButton() == 0 ){ //up_off
+    if(halValidation_u8_Validation500ms() == 0){
       manage = 4;
     }
   }
   else {
     //state= 0;
     appTimer_void_set_timer1();
-    if(halValidation_u32_Validation500ms() == 1){
+    if(halValidation_u8_Validation500ms() == 1){
       manage = 6;
     }
 
@@ -239,7 +234,7 @@ T_UBYTE app_void_behaviorDown(){
   return manage;
 }
 
-T_UBYTE appUpDown_void_ManualUp(){
+T_UBYTE appUpDown_u8_ManualUp(){
   halLeds_void_TurnOnBlueLed(1);
   halLeds_void_TurnOnGreenLed(0);
   appTimer_void_set_timer0();
@@ -296,7 +291,7 @@ T_UBYTE appUpDown_void_ManualUp(){
   return manage;
 }
 
-T_UBYTE appUpDown_void_ManualDown(){
+T_UBYTE appUpDown_u8_ManualDown(){
   if (s32_switch_flag < 0) {
     manage = 0;
   }
@@ -361,8 +356,8 @@ T_UBYTE appUpDown_void_ManualDown(){
   return manage;
 }
 
-T_UBYTE appUpDown_void_antipinch(){
-  if(appButtons_u32_AntipinchButton() == 1){
+T_UBYTE appUpDown_u8_Antipinch(){
+  if(appButtons_u8_AntipinchButton() == 1){
     u32_Antipinch_Flag = 1;
     manage = 4;
   }
@@ -372,10 +367,14 @@ T_UBYTE appUpDown_void_antipinch(){
   return manage;
 }
 
-T_UBYTE appDown_void_5sec(){
+T_UBYTE appUpDown_u8_5sec(){
   if (u32_lpit0_ch1_flag_counter<=5000){
     manage = 8;
     appTimer_void_set_timer1();
+    halLeds_void_TurnOnGreenLed(1);
+    halLeds_void_TurnOnRedLed(1);
+    halLeds_void_TurnOnBlueLed(1);
+
   }
   else{
     manage = 0;
@@ -384,10 +383,10 @@ T_UBYTE appDown_void_5sec(){
   return manage;
 }
 
-T_UBYTE appUpDown_Init(){
-  if ( appButtons_u32_PushUpButton() == 1 ) {
+T_UBYTE appUpDown_u8_Init(){
+  if ( appButtons_u8_PushUpButton() == 1 ) {
     appTimer_void_set_timer1();
-    if (appButtons_u32_Push10ms() == 1) {
+    if (appButtons_u8_Push10ms() == 1) {
       manage = 1;
     }
   }
@@ -398,180 +397,19 @@ T_UBYTE appUpDown_Init(){
     appTimer_void_clear_timer1();
   }
 
-  if (appButtons_u32_PushDownButton() == 1 ){
+  if (appButtons_u8_PushDownButton() == 1 ){
     appTimer_void_set_timer1();
-    if (appButtons_u32_Push10ms() == 1) {
+    if (appButtons_u8_Push10ms() == 1) {
       manage = 3;
     }
   }
 
-  if (appButtons_u32_PushUpButton() == 0 && appButtons_u32_PushDownButton() == 0) {
+  if (appButtons_u8_PushUpButton() == 0 && appButtons_u8_PushDownButton() == 0) {
     appTimer_void_clear_timer1();
+    halLeds_void_TurnOnGreenLed(0);
+    halLeds_void_TurnOnRedLed(0);
+    halLeds_void_TurnOnBlueLed(0);
   }
   return manage;
 }
-
-/*void appUpDown_void_ManualUp() {
-  halLeds_void_TurnOnBlueLed(1);
-  halLeds_void_TurnOnGreenLed(0);
-	if (s32_switch_flag<9) {
-		s32_switch_flag++;
-		}
-	else{
-	}
-	appTimer_void_set_timer0();
-	if (u32_lpit0_ch0_flag_counter == 400){
-		switch (s32_switch_flag) {
-			case 0:
-				halLeds_void_TurnOnLedBar1(1);
-				break;
-
-			case 1:
-				halLeds_void_TurnOnLedBar2(1);
-				break;
-
-			case 2:
-				halLeds_void_TurnOnLedBar3(1);
-				break;
-
-			case 3:
-				halLeds_void_TurnOnLedBar4(1);
-				break;
-
-			case 4:
-				halLeds_void_TurnOnLedBar5(1);
-				break;
-
-			case 5:
-				halLeds_void_TurnOnLedBar6(1);
-				break;
-
-			case 6:
-				halLeds_void_TurnOnLedBar7(1);
-				break;
-
-			case 7:
-				halLeds_void_TurnOnLedBar8(1);
-				break;
-
-			case 8:
-				halLeds_void_TurnOnLedBar9(1);
-				break;
-
-			case 9:
-				//halWinMov_void_ToggleBlueLed(0);
-				halLeds_void_TurnOnBlueLed(0);
-				halLeds_void_TurnOnLedBar10(1);
-			break;
-		}
-		appTimer_void_clear_timer0();
-	}
-}*/
-//
-// void appUpDown_void_ManualDown() {
-// 	halWinMov_void_ToggleBlueLed(0);//Blue led off
-// 	halWinMov_void_ToggleGreenLed(1); /*Green Led On*/
-// 	appUpDown_void_timer0();
-// 	switch (s32_switch_flag) {
-// 		case 9:
-// 			halWinMov_void_ToggleLedBar10(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 8:
-// 			halWinMov_void_ToggleLedBar9(0);/* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 7:
-// 			halWinMov_void_ToggleLedBar8(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 6:
-// 			halWinMov_void_ToggleLedBar7(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 5:
-// 			halWinMov_void_ToggleLedBar6(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 4:
-// 			halWinMov_void_ToggleLedBar5(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 3:
-// 			halWinMov_void_ToggleLedBar4(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 2:
-// 			halWinMov_void_ToggleLedBar3(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 1:
-// 			halWinMov_void_ToggleLedBar2(0); /* Toggle output on port D0 (blue LED) */
-// 			break;
-//
-// 		case 0:
-// 			halWinMov_void_ToggleLedBar1(0); /* Toggle output on port D16 (green LED) */
-// 			s32_switch_flag=-1;
-// 			break;
-//
-// 		default:
-// 			break;
-// 	}
-// 	if (s32_switch_flag>0){
-// 		s32_switch_flag--;
-// 	}
-// }
-
-/*void appUpDown_void_clearGPIO() {
-	halWinMov_void_ToggleBlueLed(0);
-	halWinMov_void_ToggleRedLed(0);
-	halWinMov_void_ToggleGreenLed(0);
-	halWinMov_void_ToggleLedBar1(0);
-	halWinMov_void_ToggleLedBar2(0);
-	halWinMov_void_ToggleLedBar3(0);
-	halWinMov_void_ToggleLedBar4(0);
-	halWinMov_void_ToggleLedBar5(0);
-	halWinMov_void_ToggleLedBar6(0);
-	halWinMov_void_ToggleLedBar7(0);
-	halWinMov_void_ToggleLedBar8(0);
-	halWinMov_void_ToggleLedBar9(0);
-	halWinMov_void_ToggleLedBar10(0);
-}*/
-
-// T_U32 appUpDown_u32_PushAntipinch(){
-// 	if(halWinMov_u32_ValidateAntipinch()){
-// 			return 1;
-// 		}
-// 		else{
-// 			return 0;
-// 		}
-// }
-//
-// void appUpDown_void_default_Leds(T_U32 u32_led) {
-// 	switch(u32_led){
-// 		case 0:
-// 			halWinMov_void_ToggleBlueLed(0);
-// 			halWinMov_void_ToggleGreenLed(0);
-// 			halWinMov_void_ToggleRedLed(0);
-// 			break;
-//
-// 		case 1:
-// 			halWinMov_void_ToggleBlueLed(0);
-// 			break;
-//
-// 		case 2:
-// 			halWinMov_void_ToggleGreenLed(0);
-// 			break;
-//
-// 		case 3:
-// 			halWinMov_void_ToggleRedLed(1);
-// 			break;
-//
-// 		default:
-// 			halWinMov_void_ToggleBlueLed(1);
-// 			halWinMov_void_ToggleGreenLed(1);
-// 			halWinMov_void_ToggleRedLed(1);
-// 			break;
-// 	}
-// }
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

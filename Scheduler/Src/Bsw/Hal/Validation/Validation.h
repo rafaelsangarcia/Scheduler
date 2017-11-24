@@ -41,37 +41,26 @@
 /*
  * $Log: filename.h  $
   ============================================================================*/
-
-/*typedef unsigned int u32_t;//hola=Lpit0_ch1, contador, Lpit0_ch0
-typedef int s32_t;//counter*/
-/* Includes */
-
-
 #ifndef BSW_HAL_VALIDATION_VALIDATION_H_
 #define BSW_HAL_VALIDATION_VALIDATION_H_
 
 #include "Port.h"
 #include "General.h"
-//#include "Std_Types.h"
-// #include "Dio.h"
- #include "Timer.h"
+#include "Timer.h"
 
 /*============================================================================*/
 /* Constants and types */
-//-------------------typedef unsigned int T_U32;
 /*============================================================================*/
 /* Exported Variables */
-
 /*============================================================================*/
-
 /*============================================================================*/
 /* Exported functions prototypes */
 /*============================================================================*/
-T_ULONG halValidation_u32_ValidateUpButton();
-T_ULONG halValidation_u32_ValidateDownButton();
-T_ULONG halValidation_u32_ValidateAntipinchButton();
-T_ULONG halValidation_u32_Validation10ms();
-T_ULONG halValidation_u32_Validation500ms();
+T_UBYTE halValidation_u32_ValidateUpButton();
+T_UBYTE halValidation_u32_ValidateDownButton();
+T_UBYTE halValidation_u32_ValidateAntipinchButton();
+T_UBYTE halValidation_u32_Validation10ms();
+T_UBYTE halValidation_u32_Validation500ms();
 
 /*============================================================================*/
 

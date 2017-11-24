@@ -58,8 +58,8 @@
 /*============================================================================*/
 /* Exported functions */
 // leds 0 prende , barled 1 prende
-void halLeds_void_TurnOnBlueLed(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnBlueLed(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortSetPin(PORTCH_D, BlueLed);
     break;
@@ -69,8 +69,8 @@ void halLeds_void_TurnOnBlueLed(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnGreenLed(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnGreenLed(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortSetPin(PORTCH_D, GreenLed);
     break;
@@ -80,8 +80,8 @@ void halLeds_void_TurnOnGreenLed(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnRedLed(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnRedLed(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortSetPin(PORTCH_D, RedLed);
     break;
@@ -91,8 +91,8 @@ void halLeds_void_TurnOnRedLed(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar1(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar1(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_C, LedBar_1);
     break;
@@ -102,8 +102,8 @@ void halLeds_void_TurnOnLedBar1(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar2(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar2(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_B, LedBar_2);
     break;
@@ -113,8 +113,8 @@ void halLeds_void_TurnOnLedBar2(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar3(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar3(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_B, LedBar_3);
     break;
@@ -124,8 +124,8 @@ void halLeds_void_TurnOnLedBar3(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar4(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar4(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_B, LedBar_4);
     break;
@@ -135,8 +135,8 @@ void halLeds_void_TurnOnLedBar4(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar5(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar5(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_B, LedBar_5);
     break;
@@ -146,8 +146,8 @@ void halLeds_void_TurnOnLedBar5(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar6(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar6(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_C, LedBar_6);
     break;
@@ -157,8 +157,8 @@ void halLeds_void_TurnOnLedBar6(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar7(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar7(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_C, LedBar_7);
     break;
@@ -168,8 +168,8 @@ void halLeds_void_TurnOnLedBar7(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar8(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar8(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_E, LedBar_8);
     break;
@@ -179,8 +179,8 @@ void halLeds_void_TurnOnLedBar8(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar9(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar9(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_E, LedBar_9);
     break;
@@ -190,8 +190,8 @@ void halLeds_void_TurnOnLedBar9(T_ULONG u32_status){
     break;
   }
 }
-void halLeds_void_TurnOnLedBar10(T_ULONG u32_status){
-  switch (u32_status) {
+void halLeds_void_TurnOnLedBar10(T_UBYTE u8_status){
+  switch (u8_status) {
     case 0:
       Dio_PortClearPin(PORTCH_E, LedBar_10);
     break;

@@ -47,15 +47,11 @@
 /* Includes */
 
 #include "Validation.h"
-//#include "General.h"
-//#include "Port.h"
 
 /*============================================================================*/
 /* Constants and types  */
 /*============================================================================*/
 /* Variables */
-/*T_ULONG u32_lpit0_ch0_flag_counter = 0;
-T_ULONG u32_lpit0_ch1_flag_counter = 0;*/
 /*============================================================================*/
 /* Private functions prototypes */
 /*============================================================================*/
@@ -65,7 +61,7 @@ T_ULONG u32_lpit0_ch1_flag_counter = 0;*/
 /*============================================================================*/
 /* Exported functions */
 
-T_ULONG halValidation_u32_ValidateUpButton(){
+T_UBYTE halValidation_u8_ValidateUpButton(){
 	if(PTC->PDIR & (1<<UpButton)){
 			return 1;
 		}
@@ -73,7 +69,7 @@ T_ULONG halValidation_u32_ValidateUpButton(){
 			return 0;
 		}
 }
-T_ULONG halValidation_u32_ValidateDownButton(){
+T_UBYTE halValidation_u8_ValidateDownButton(){
 	if(PTC->PDIR & (1<<DownButton)){
 			return 1;
 		}
@@ -81,7 +77,7 @@ T_ULONG halValidation_u32_ValidateDownButton(){
 			return 0;
 		}
 }
-T_ULONG halValidation_u32_ValidateAntipinchButton(){
+T_UBYTE halValidation_u8_ValidateAntipinchButton(){
 	if(PTE->PDIR & (1<<Antipinch)){
 			return 1;
 		}
@@ -89,7 +85,7 @@ T_ULONG halValidation_u32_ValidateAntipinchButton(){
 			return 0;
 		}
 }
-T_ULONG halValidation_u32_Validation10ms() {
+T_UBYTE halValidation_u8_Validation10ms() {
 	if (u32_lpit0_ch1_flag_counter >= 10) {
 		return 1;
 	}
@@ -97,7 +93,7 @@ T_ULONG halValidation_u32_Validation10ms() {
 		return 0;
 	}
 }
-T_ULONG halValidation_u32_Validation500ms() {
+T_UBYTE halValidation_u8_Validation500ms() {
 	if (u32_lpit0_ch1_flag_counter >= 500) {
 		return 1;
 	}
@@ -105,13 +101,5 @@ T_ULONG halValidation_u32_Validation500ms() {
 		return 0;
 	}
 }
-/*T_U32 halValidation_u32_ValidateAntipinch(){
-	if(PTE->PDIR & (1<<Antipinch)){
-				return 1;
-			}
-			else{
-				return 0;
-			}
-}*/
 /*============================================================================*/
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

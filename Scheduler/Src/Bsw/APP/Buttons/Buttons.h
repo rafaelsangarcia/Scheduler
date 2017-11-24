@@ -57,10 +57,10 @@
 /* Exported Variables */
 /*============================================================================*/
 /* Exported functions prototypes */
-T_ULONG appButtons_u32_PushUpButton();
-T_ULONG appButtons_u32_PushDownButton();
-T_ULONG appButtons_u32_AntipinchButton();
-T_ULONG appButtons_u32_Push10ms();
+T_UBYTE appButtons_u8_PushUpButton();
+T_UBYTE appButtons_u8_PushDownButton();
+T_UBYTE appButtons_u8_AntipinchButton();
+T_UBYTE appButtons_u8_Push10ms();
 /*============================================================================*/
 
 #endif  /* Notice: the file ends with a blank new line to avoid compiler warnings */

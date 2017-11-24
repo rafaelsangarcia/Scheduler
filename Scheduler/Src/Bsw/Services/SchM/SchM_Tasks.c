@@ -62,8 +62,7 @@
 /*============================================================================*/
 
 /* Variables */
-/*T_SLONG s32_switch_flag = -1;
-T_ULONG u32_Antipinch_Flag = 0;*/
+/*int counter_1;*/ /*to active overload*/
 /*============================================================================*/
 
 /* Private functions prototypes */
@@ -85,343 +84,51 @@ T_ULONG u32_Antipinch_Flag = 0;*/
 
 /* Exported functions */
 void SchM_1ms_Task ( void ){
+<<<<<<< HEAD
 	Dio_PortTooglePin(PORTCH_D, RedLed);
+=======
+	/*for( counter_1=0; counter_1 <= Cycles; counter_1++){}*/ /*to active overload*/
+>>>>>>> Dev
 	static unsigned char state = 0;
 	switch(state){
 	case 0: /*idle State*/
-		/*if ( appButtons_u32_PushUpButton() == 1 ) {
-			appTimer_void_set_timer1();
-			if (appButtons_u32_Push10ms() == 1) {
-				state = 1;
-			}
-		}
-
-		if (u32_Antipinch_Flag == 1){
-			state = 8;
-			u32_Antipinch_Flag=0;
-			appTimer_void_clear_timer1();
-		}
-
-		if (appButtons_u32_PushDownButton() == 1 ){
-			appTimer_void_set_timer1();
-			if (appButtons_u32_Push10ms() == 1) {
-				state = 3;
-			}
-		}
-
-		if (appButtons_u32_PushUpButton() == 0 && appButtons_u32_PushDownButton() == 0) {
-			appTimer_void_clear_timer1();
-		}*/
-		state = appUpDown_Init();
+		state = appUpDown_u8_Init();
 		break;
 
 	case 1: /*Behavior UP*/
-		/*if( appButtons_u32_PushUpButton() == 0 ){ //up_off
-			if(halValidation_u32_Validation500ms() == 0){
-				//state = 2;
-				state = 7;
-			}
-		}
-		else {
-			//state= 0;
-			appTimer_void_set_timer1();
-			if(halValidation_u32_Validation500ms() == 1){
-				state = 5;
-			}
-
-		}*/
-		state = app_void_behaviorUp();
+		state = appUpDown_u8_BehaviorUp();
 		break;
 
 	case 2: /*One Touch Up*/
-		/*halLeds_void_TurnOnBlueLed(1);
-		halLeds_void_TurnOnGreenLed(0);
-		appTimer_void_set_timer0();
-		if (u32_lpit0_ch0_flag_counter == 400){
-			if (s32_switch_flag<9) {
-				s32_switch_flag++;
-			}
-			switch (s32_switch_flag) {
-			case 0:
-				halLeds_void_TurnOnLedBar1(1);
-				break;
-
-			case 1:
-				halLeds_void_TurnOnLedBar2(1);
-				break;
-
-			case 2:
-				halLeds_void_TurnOnLedBar3(1);
-				break;
-
-			case 3:
-				halLeds_void_TurnOnLedBar4(1);
-				break;
-
-			case 4:
-				halLeds_void_TurnOnLedBar5(1);
-				break;
-
-			case 5:
-				halLeds_void_TurnOnLedBar6(1);
-				break;
-
-			case 6:
-				halLeds_void_TurnOnLedBar7(1);
-				break;
-
-			case 7:
-				halLeds_void_TurnOnLedBar8(1);
-				break;
-
-			case 8:
-				halLeds_void_TurnOnLedBar9(1);
-				break;
-
-			case 9:
-				//halWinMov_void_ToggleBlueLed(0);
-				halLeds_void_TurnOnBlueLed(0);
-				halLeds_void_TurnOnLedBar10(1);
-				state = 0;
-				break;
-			}
-			appTimer_void_clear_timer0();
-			if(s32_switch_flag < 9){
-				state = 7;
-			}
-		}*/
-		state = app_void_oneTouchUp();
+		state = appUpDown_u8_OneTouchUp();
 		break;
 
 	case 3: /*Behavior Down*/
-		/*if( appButtons_u32_PushDownButton() == 0 ){ //up_off
-			if(halValidation_u32_Validation500ms() == 0){
-				state = 4;
-			}
-		}
-		else {
-			//state= 0;
-			appTimer_void_set_timer1();
-			if(halValidation_u32_Validation500ms() == 1){
-				state = 6;
-			}
-
-		}*/
-		state = app_void_behaviorDown();
+		state = appUpDown_u8_BehaviorDown();
 		break;
 
 	case 4: /*One Touch Down */
-		/*if (s32_switch_flag < 0) {
-			state = 0;
-		}
-		else{
-			halLeds_void_TurnOnBlueLed(0);
-			halLeds_void_TurnOnGreenLed(1);
-			appTimer_void_set_timer0();
-
-			if (u32_lpit0_ch0_flag_counter == 400){
-
-				switch (s32_switch_flag) {
-				case 0:
-					halLeds_void_TurnOnLedBar1(0);
-					halLeds_void_TurnOnGreenLed(0);
-					s32_switch_flag= -1;
-					state = 0;
-					break;
-
-				case 1:
-					halLeds_void_TurnOnLedBar2(0);
-					break;
-
-				case 2:
-					halLeds_void_TurnOnLedBar3(0);
-					break;
-
-				case 3:
-					halLeds_void_TurnOnLedBar4(0);
-					break;
-
-				case 4:
-					halLeds_void_TurnOnLedBar5(0);
-					break;
-
-				case 5:
-					halLeds_void_TurnOnLedBar6(0);
-					break;
-
-				case 6:
-					halLeds_void_TurnOnLedBar7(0);
-					break;
-
-				case 7:
-					halLeds_void_TurnOnLedBar8(0);
-					break;
-
-				case 8:
-					halLeds_void_TurnOnLedBar9(0);
-					break;
-
-				case 9:
-					//halWinMov_void_ToggleBlueLed(0);
-					halLeds_void_TurnOnLedBar10(0);
-
-					break;
-					default:
-				break;
-				}
-				if (s32_switch_flag>0) {
-					s32_switch_flag--;
-				}
-				appTimer_void_clear_timer0();
-			}
-		}*/
-		state = app_void_oneTouchDown();
+		state = appUpDown_u8_OneTouchDown();
 		break;
 
 	case 5: /*Manual Up*/
-		/*halLeds_void_TurnOnBlueLed(1);
-		halLeds_void_TurnOnGreenLed(0);
-		appTimer_void_set_timer0();
-		if (u32_lpit0_ch0_flag_counter == 400){
-			if (s32_switch_flag<9) {
-				s32_switch_flag++;
-			}
-			switch (s32_switch_flag) {
-			case 0:
-				halLeds_void_TurnOnLedBar1(1);
-				break;
-
-			case 1:
-				halLeds_void_TurnOnLedBar2(1);
-				break;
-
-			case 2:
-				halLeds_void_TurnOnLedBar3(1);
-				break;
-
-			case 3:
-				halLeds_void_TurnOnLedBar4(1);
-				break;
-
-			case 4:
-				halLeds_void_TurnOnLedBar5(1);
-				break;
-
-			case 5:
-				halLeds_void_TurnOnLedBar6(1);
-				break;
-
-			case 6:
-				halLeds_void_TurnOnLedBar7(1);
-				break;
-
-			case 7:
-				halLeds_void_TurnOnLedBar8(1);
-				break;
-
-			case 8:
-				halLeds_void_TurnOnLedBar9(1);
-				break;
-
-			case 9:
-				halLeds_void_TurnOnBlueLed(0);
-				halLeds_void_TurnOnLedBar10(1);
-				state = 0;
-				break;
-			}
-			appTimer_void_clear_timer0();
-			state = 0;
-		}*/
-		state = appUpDown_void_ManualUp();
+		state = appUpDown_u8_ManualUp();
 		break;
 
 	case 6: /*Manual Down*/
-		/*if (s32_switch_flag < 0) {
-			state = 0;
-		}
-		else {
-			halLeds_void_TurnOnBlueLed(0);
-			halLeds_void_TurnOnGreenLed(1);
-			appTimer_void_set_timer0();
-			if (u32_lpit0_ch0_flag_counter == 400){
-
-				switch (s32_switch_flag) {
-				case 0:
-					halLeds_void_TurnOnLedBar1(0);
-					s32_switch_flag= -1;
-					state = 0;
-					break;
-
-				case 1:
-					halLeds_void_TurnOnLedBar2(0);
-					break;
-
-				case 2:
-					halLeds_void_TurnOnLedBar3(0);
-					break;
-
-				case 3:
-					halLeds_void_TurnOnLedBar4(0);
-					break;
-
-				case 4:
-					halLeds_void_TurnOnLedBar5(0);
-					break;
-
-				case 5:
-					halLeds_void_TurnOnLedBar6(0);
-					break;
-
-				case 6:
-					halLeds_void_TurnOnLedBar7(0);
-					break;
-
-				case 7:
-					halLeds_void_TurnOnLedBar8(0);
-					break;
-
-				case 8:
-					halLeds_void_TurnOnLedBar9(0);
-					break;
-
-				case 9:
-					halLeds_void_TurnOnLedBar10(0);
-
-					break;
-				}
-				if (s32_switch_flag>0) {
-					s32_switch_flag--;
-				}
-				appTimer_void_clear_timer0();
-				state = 0;
-
-				halLeds_void_TurnOnGreenLed(0);
-			}
-		}*/
-		state = appUpDown_void_ManualDown();
+		state = appUpDown_u8_ManualDown();
 		break;
 
 	case 7: /*Antipinch Validation State */
-		/*if(appButtons_u32_AntipinchButton() == 1){
-			u32_Antipinch_Flag = 1;
-			state = 4;
-		}
-		else{
-			state = 2;
-		}*/
-		state = appUpDown_void_antipinch();
+		state = appUpDown_u8_Antipinch();
 		break;
 
 	case 8:
-	/*	if (u32_lpit0_ch1_flag_counter<=5000){
-			state = 8;
-			appTimer_void_set_timer1();
-		}
-		else{
-			state = 0;
-			appTimer_void_clear_timer1();
-		}*/
-		state = appDown_void_5sec();
+		state = appUpDown_u8_5sec();
+		break;
+
+	default:
+		halLeds_void_TurnOnRedLed(1);
 		break;
 	}
 }
