@@ -53,8 +53,6 @@
 
 /* Includes */
 #include "SchM_Tasks.h"
-/*#include "UpDown.h"
-#include "Buttons.h"*/
 
 /*============================================================================*/
 
