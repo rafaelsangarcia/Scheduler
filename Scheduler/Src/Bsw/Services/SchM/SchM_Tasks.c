@@ -83,11 +83,7 @@
 
 /* Exported functions */
 void SchM_1ms_Task ( void ){
-<<<<<<< HEAD
-	Dio_PortTooglePin(PORTCH_D, RedLed);
-=======
 	/*for( counter_1=0; counter_1 <= Cycles; counter_1++){}*/ /*to active overload*/
->>>>>>> Dev
 	static unsigned char state = 0;
 	switch(state){
 	case 0: /*idle State*/
