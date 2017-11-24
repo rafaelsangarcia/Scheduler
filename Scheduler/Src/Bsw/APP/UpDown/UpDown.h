@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  * $Source: UpDown.h $
- * $Revision: version 2 $
+ * $Revision: version 3 $
  * $Author: Rafael Sanchez $
  * $Date: 23/Nov/2017 $
  */
@@ -36,6 +36,8 @@
 /*----------------------------------------------------------------------------*/
 /* Rafael Sanchez       |         1         | Prototype creations to up & down the window*/
 /* Rafael Sanchez       |         2         | Reorder and split prototype functions*/
+/* Rafael Sanchez       |         3         | Add prototype behaviors with its action*/
+/* and match with the main state machine                                        */
 
 /*----------------------------------------------------------------------------*/
 /*============================================================================*/
@@ -66,16 +68,16 @@
 /* Exported Variables */
 /*============================================================================*/
 /* Exported functions prototypes */
-void appUpDown_void_ManualUp();
-//void appUpDown_void_ManualDown();
-T_ULONG appUpDown_u32_PushUpButton();
-T_ULONG appUpDown_u32_PushDownButton();
-//T_U32 appUpDown_u32_PushAntipinch();
-/*T_ULONG appUpDown_u32_validation10ms();
-T_ULONG appUpDown_u32_validation500ms();*/
-void app_void_behaviorUp();
-void app_void_oneTouchUp();
-T_ULONG appUpDown_u32_Push10ms();
+T_UBYTE app_void_behaviorUp();
+T_UBYTE app_void_behaviorDown();
+T_UBYTE app_void_oneTouchUp();
+T_UBYTE app_void_oneTouchDown();
+T_UBYTE appUpDown_void_ManualUp();
+T_UBYTE appUpDown_void_ManualDown();
+T_UBYTE appUpDown_void_antipinch();
+T_UBYTE appDown_void_5sec();
+T_UBYTE appUpDown_Init();
+//T_ULONG appUpDown_u32_Push10ms();
 //void appUpDown_void_clearGPIO();
 //void appUpDown_void_default_Leds(T_ULONG led);
 
