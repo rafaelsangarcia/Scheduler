@@ -122,6 +122,10 @@ void SchM_1ms_Task ( void ){
 	case 8:
 		state = appUpDown_u8_5sec();
 		break;
+
+	default:
+		halLeds_void_TurnOnRedLed(1);
+		break;
 	}
 }
 /*============================================================================*/
