@@ -85,6 +85,7 @@ T_ULONG u32_Antipinch_Flag = 0;*/
 
 /* Exported functions */
 void SchM_1ms_Task ( void ){
+	Dio_PortTooglePin(PORTCH_D, RedLed);
 	static unsigned char state = 0;
 	switch(state){
 	case 0: /*idle State*/
